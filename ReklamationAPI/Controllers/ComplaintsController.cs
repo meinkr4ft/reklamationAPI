@@ -144,7 +144,6 @@ namespace ReklamationAPI.Controllers
         // POST: api/Complaints
         /// <summary>
         /// Creates a new complaint.
-        /// The created complaint will have the status "Open".
         /// </summary>
         /// <param name="dto">The complaint data transfer object containing the details of the complaint to create.</param>
         /// <returns>The created complaint response object.</returns>
