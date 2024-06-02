@@ -2,8 +2,12 @@
 RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tests.
 
 ## Inhaltsverzeichnis
-1. [Projektstruktur](#project_structure)
-2. 
+1. [Projektstruktur](#projektstruktur)
+2. [Installation](#installation)
+3. [Frameworks / Features / Designentscheidungen](#frameworks)
+4. [API Dokumentation](#api-dokumentation)
+5. [Testfälle](#testfaelle)
+6. [Verbesserungsmöglichkeiten](#verbesserungsmoeglichkeiten)
 
 ## Projektstruktur <a name="project_structure"></a>
 ### ReklamationAPI
@@ -16,7 +20,7 @@ RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tes
 => Python Skript als E2E-Blackbox-Test
 
 
-## Installation
+## Installation <a name="installation"></a>
 
 ### Voraussetzungen
 C# Web API (Haupt- und Testprojekt)
@@ -66,7 +70,7 @@ cd Python E2E Test
 python testReklamationAPI.py
 ```
 
-## Frameworks / Features / Designentscheidungen
+## Frameworks / Features / Designentscheidungen <a name="frameworks"></a>
 ### API mit ASP.NET Core
 Die Wahl fiel für mich auf ASP.NET Core, da ich zwar schon ein paar Erfahrungen damit gemacht habe, bisher jedoch noch keine RESTful API damit implementiert habe. Dadurch stellt das Projekt für mich eine gute Herausforderung und Übung zugleich dar. 
 
@@ -130,7 +134,7 @@ Aktuell sind 36 Unit Tests implementiert, die hauptsächlich die möglichen Szen
 Für einen E2E Test wollte ich einen Blackbox-Test umsetzen, der aus Sicht eines Anwenders geschehen soll.\
 Da Python ohne großen Overhead sich dafür nutzen lässt, habe ich eine Reihe von aufeinanderefolgenden API Calls implementiert, die mit den entsprechenden GETs überprüft, ob die Daten richtig angelegt, aktualisiert und zurückgegeben werden.
 
-## API Dokumentation
+## API Dokumentation <a name="api-dokumentation"></a>
 Die Basisurl lautet:
 https://localhost:7069/
 
@@ -624,7 +628,7 @@ Beispiel Response Body:
 ```
 
 
-## Testfälle
+## Testfälle <a name="testfaelle"></a>
 Neben automatisierten Unit oder E2E Tests, lassen sich auf Testfälle definieren, die beispielsweise über das Swagger UI durchgeführt werden können.\
 Exemplarisch werden ein paar mögliche Testfälle beschrieben.
 
@@ -646,7 +650,7 @@ Testschritte:\
 
 ###6. Filtern von Reklamationen
 
-## Verbesserungsmöglichkeiten
+## Verbesserungsmöglichkeiten <a name="verbesserungsmoeglichkeiten"></a>
 - Überlegung, ob die Properties beim PUT optional sein sollten oder nicht.
 - Suche verfeinern, indem numerische Parameter auch eine Range darstellen können
 - Eigene Datenbank für den Test Einrichten
