@@ -394,7 +394,7 @@ curl -X 'DELETE' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzE3MzAzMzQxLCJleHAiOjE3MTc5MDgxNDEsImlhdCI6MTcxNzMwMzM0MSwiaXNzIjoiUmVrbGFtYXRpb25BUElJc3N1ZXIiLCJhdWQiOiJSZWtsYW1hdGlvbkFQSUF1ZGllbmNlIn0.0b3djRHCxgz1PSkFef0pR8vFfGyVxe73OZyXjgwHdYk'
 ```
 
-### 7. Suche von Reklamationen
+### 7. Suchen von Reklamationen
 Beschreibung: Endpunkt zur Suche von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **mindestens ein Kriterium** erfüllen.
 Method: **GET**\
 URL: **/api/Complaints/search**\
@@ -410,7 +410,7 @@ Mögliche Parameter:
 - description
 - status
 - ignoreCase
-- 
+
 Body Response (200 OK):
 ```json
 {
@@ -486,9 +486,101 @@ Beispiel Response Body:
 }
 ```
 
+### 8. Filtern von Reklamationen
+Beschreibung: Endpunkt zum Filtern von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **alle Kriterien** erfüllen.
+Method: **GET**\
+URL: **/api/Complaints/filter**\
+Berechtigung: Jeder\
+Die Parameter werden als URL Parameter angegeben. Alle Parameter sind **optional**.\
+Kein Body notwendig.
+
+Mögliche Parameter:
+- productId
+- customerName
+- customerEmail
+- date
+- description
+- status
+- ignoreCase
+
+Body Response (200 OK):
+```json
+{
+  {searchDto}
+  },
+  "complaints": [
+    "{complaint}",
+    "{complaint}",
+    "{...}"
+  ]
+}
+```
+[Schema zu search_dto](#search_dto)
+Das Search-DTO kapselt die Filterparameter.
+[Schema zu complaint_response](#complaint_response)
 
 
-### Schema zu Complaint response <a name="complaint_response"></a>
+Beispiel Request:
+```curl
+curl -X 'GET' \
+  'https://localhost:7069/api/Complaints/filter?customerName=Max&status=Open&ignoreCase=true' \
+  -H 'accept: text/plain'
+```
+
+Beispiel Response Body:
+```json
+{
+  "searchDto": {
+    "operation": "filter",
+    "productId": null,
+    "customerName": "Alex",
+    "customerEmail": null,
+    "date": null,
+    "description": "liefer",
+    "status": null,
+    "ignoreCase": true
+  },
+  "complaints": [
+    {
+      "id": 1,
+      "productId": 101,
+      "customer": {
+        "email": "alex.schmidt@gmail.com",
+        "name": "Alex Schmidt"
+      },
+      "date": "2023-05-28",
+      "description": "Falsches Produkt wurde geliefert.",
+      "status": "Open"
+    },
+    {
+      "id": 2,
+      "productId": 54,
+      "customer": {
+        "email": "alexander.weber@web.de",
+        "name": "Alexander Weber"
+      },
+      "date": "2023-04-21",
+      "description": "Die Lieferung kam nicht an.",
+      "status": "Rejected"
+    },
+    {
+      "id": 3,
+      "productId": 20,
+      "customer": {
+        "email": "Alexandra.Wagner@yahoo.de",
+        "name": "Alexandra Wagner"
+      },
+      "date": "2023-03-18",
+      "description": "Das Produkt wurde zwei Mal geliefert.",
+      "status": "Open"
+    }
+  ]
+}
+```
+
+
+
+### Schema zu Complaint response: <a name="complaint_response"></a>
 ```json
 {
     "id": "{id}",
@@ -503,7 +595,7 @@ Beispiel Response Body:
 }
 ```
 
-### Schema zu Complaint dto. <a name="complaint_dto"></a>
+### Schema zu Complaint dto: <a name="complaint_dto"></a>
 ```json
 {
     "productId": "{product_id}",
@@ -517,7 +609,7 @@ Beispiel Response Body:
 }
 ```
 
-### Schema zu Search/Filter dto. <a name="complaint_dto"></a>
+### Schema zu Search/Filter dto: <a name="complaint_dto"></a>
 ```json
 {
     "operation": "{operation: 'search' oder 'filter'}",
@@ -546,3 +638,4 @@ Put Felder optional
 
 search parameter als range
 auth header im request
+404 example value bei filter und search löschen
