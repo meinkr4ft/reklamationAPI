@@ -691,7 +691,7 @@ Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden.
 
 
 ### 3. Reklamation aktualisieren <a name="puttest"></a>
-Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Reklamation mit Status "Open" oder "InProgress" ist in der Datenbank vorhanden\
+Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Reklamation mit Status "Open" oder "InProgress" ist in der Datenbank vorhanden.\
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/028f8af5-6428-4a47-a651-fcb0f8cbef4f)
 
 1. POST auf /api/auth/login mit Nutzerdaten im body (Schema: siehe. [API Dokumentation](#api-dokumentation))\
@@ -708,8 +708,8 @@ Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Rekla
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/15376bd2-2739-4bb6-9e9f-8b5c92620733)
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/9e3c5c2b-d70c-4ab3-af63-60a93a23cdca)
 
-### 4. Reklamation löschen <a name="deletetest"></a>
-Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Reklamation mit Status anders als "Canceled" ist in der Datenbank vorhanden\
+### 4. Reklamation abbrechen <a name="deletetest"></a>
+Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Reklamation mit Status anders als "Canceled" ist in der Datenbank vorhanden\.
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/9e3c5c2b-d70c-4ab3-af63-60a93a23cdca)
 
 1. POST auf /api/auth/login mit Nutzerdaten im body (Schema: siehe. [API Dokumentation](#api-dokumentation))\
@@ -721,7 +721,7 @@ Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Rekla
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/53ad0111-66e5-48c4-8f81-9bb5b4bded0b)
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/a8290510-940b-43dc-b39b-2d8642d78a19)
 
-3. PUT auf /api/Complaints/359 (Id der Reklamation aus der Vorbedingung) ohne Body.\
+3. DELETE auf /api/Complaints/359 (Id der Reklamation aus der Vorbedingung) ohne Body.\
 -> 204 No Content. Der Status der Reklamation in der Datenbank wurde auf Canceled geändert.
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/f12ed1a8-b0ea-4de5-8fb6-cfaa5f52c81c)
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/decdc163-f8e0-4349-b59c-b63591f781e6)
@@ -749,10 +749,3 @@ https://github.com/swagger-api/swagger-core/issues/4044
 2. Die Parameter Beispiele lassen sich nicht als Placeholder definieren, sodass sie bei der Eingabe verschwinden.\
 So muss man bei der Suche erst alle Parameter löschen, die man nicht braucht.
 https://github.com/swagger-api/swagger-ui/issues/3920
-
-
-Fix Creates a new complaint.
-The created complaint will have the status "Open".
-Swagger 200 OK remove
-auth header im request
-404 example value bei filter und search löschen
