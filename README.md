@@ -199,22 +199,7 @@ Body Response (200 OK):
 ]
 ```
 
-Schema zu complaint_response:
-```json
-[
-  {
-    "id": "{id}",
-    "productId": "{product_id}",
-    "customer": {
-      "email": "{email}",
-      "name": "{name}"
-    },
-    "date": "{date: YY-MM-DD}",
-    "description": "{description}",
-    "status": "{status: 'Open', 'InProgress', 'Accepted', 'Rejected' oder 'Canceled'}"
-  }
-]
-```
+[Schema zu complaint_response](#complaint_response)
 
 
 Beispiel Request:
