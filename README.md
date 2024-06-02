@@ -188,7 +188,7 @@ Beschreibung: Endpunkt zur Anzeige aller Reklamationen.\
 Method: **GET**\
 URL: **/api/Complaints**\
 Berechtigung: Jeder\
-Keine URL Parameter oder Body notwendig.\
+Keine URL Parameter oder Body notwendig.
 
 Body Response (200 OK):
 ```json
@@ -245,7 +245,7 @@ Method: **GET**\
 URL: **/api/Complaints/{id}**\
 Berechtigung: Jeder\
 Die ID ist Teil der URL.\
-Es gibt keinen Body im Request.\
+Es gibt keinen Body im Request.
 
 Body Response (200 OK):
 ```json
@@ -282,7 +282,7 @@ Beispiel Response Body:
 ]
 ```
 
-### 4. Erstellen einer Reklamation\
+### 4. Erstellen einer Reklamation
 Beschreibung: Endpunkt zum Erstellen einer Reklamation, der nach der Erstellung die Reklamation (inkl. id) zurückgibt.\
 Method: **POST**\
 URL: **/api/Auth/login**\
@@ -347,7 +347,7 @@ Die ID ist Teil der URL.\
 Body Request: 
 ```json
 {
-  {complaint_dto}
+  "{complaint_dto}"
 }
 ```
 
