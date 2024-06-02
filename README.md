@@ -182,6 +182,7 @@ Beispiel Response Body:
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzE3Mjk5NTI4LCJleHAiOjE3MTc5MDQzMjgsImlhdCI6MTcxNzI5OTUyOCwiaXNzIjoiUmVrbGFtYXRpb25BUElJc3N1ZXIiLCJhdWQiOiJSZWtsYW1hdGlvbkFQSUF1ZGllbmNlIn0.BDtMjf0PvuZPHKV07e45uQLHkxpZvcssnyW8_0LgdhY"
 }
 ```
+
 ### 2. Alle Reklamationen anzeigen
 Beschreibung: Endpunkt zur Anzeige aller Reklamationen.
 Method: **GET**  
@@ -279,6 +280,122 @@ Beispiel Response Body:
 ]
 ```
 
+### 4. Erstellen einer Reklamation
+Beschreibung: Endpunkt zum Erstellen einer Reklamation, der nach der Erstellung die Reklamation (inkl. id) zurückgibt.
+Method: **POST**  
+URL: **/api/Auth/login**  
+Body Request: 
+```json
+{
+  {complaint_dto}
+}
+```
+
+[Schema zu complaint_dto](#complaint_dto)
+
+Body Response (201 Created):
+```json
+{
+  {complaint_response}
+}
+```
+
+[Schema zu complaint_response](#complaint_response)
+
+Beispiel Request:
+```curl
+curl -X 'POST' \
+  'https://localhost:7069/api/Complaints' \
+  -H 'accept: text/plain' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "productId": 101,
+  "customer": {
+    "email": "john.doe@example.com",
+    "name": "John Doe"
+  },
+  "date": "2023-05-28",
+  "description": "Das Produkt funktioniert nicht wie erwartet.",
+  "status": "Open"
+}'
+```
+
+Beispiel Response Body:
+```json
+{
+  "id": 1,
+  "productId": 101,
+  "customer": {
+    "email": "john.doe@example.com",
+    "name": "John Doe"
+  },
+  "date": "2023-05-28",
+  "description": "Das Produkt funktioniert nicht wie erwartet.",
+  "status": "Open"
+}
+```
+
+### 5. Aktualisieren einer Reklamation
+Beschreibung: Endpunkt zum Aktualisieren einer Reklamation anhand der ID.
+Method: **PUT**  
+URL: **/api/Auth/login/{id}**  
+Die ID ist Teil der URL.
+Body Request: 
+```json
+{
+  {complaint_dto}
+}
+```
+
+
+
+[Schema zu complaint_dto](#complaint_dto)
+**Hinweis:** Nach aktueller Implementierung sind alle Felder beim PUT required, auch wenn deren Werte sich nicht ändern.
+
+Body Response: 204 No Content
+
+
+
+
+
+[Schema zu complaint_response](#complaint_response)
+
+Beispiel Request:
+```curl
+curl -X 'POST' \
+  'https://localhost:7069/api/Complaints' \
+  -H 'accept: text/plain' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "productId": 101,
+  "customer": {
+    "email": "john.doe@example.com",
+    "name": "John Doe"
+  },
+  "date": "2023-05-28",
+  "description": "Das Produkt funktioniert nicht wie erwartet.",
+  "status": "Open"
+}'
+```
+
+Beispiel Response Body:
+```json
+{
+  "id": 1,
+  "productId": 101,
+  "customer": {
+    "email": "john.doe@example.com",
+    "name": "John Doe"
+  },
+  "date": "2023-05-28",
+  "description": "Das Produkt funktioniert nicht wie erwartet.",
+  "status": "Open"
+}
+```
+
+
+
+
 ### Schema zu Complaint response <a name="complaint_response"></a>
 ```json
 [
@@ -296,6 +413,32 @@ Beispiel Response Body:
 ]
 ```
 
+### Schema zu Complaint response. <a name="complaint_dto"></a>
+```json
+[
+  {
+    "productId": "{product_id}",
+    "customer": {
+      "email": "{email}",
+      "name": "{name}"
+    },
+    "date": "{date: YY-MM-DD}",
+    "description": "{description}",
+    "status": "{status: 'Open', 'InProgress', 'Accepted', 'Rejected' oder 'Canceled'}"
+  }
+]
+```
+
+
+
 ## Testbeschreibung
 
 ## Luft nach oben
+
+
+##
+Fix Creates a new complaint.
+The created complaint will have the status "Open".
+
+Swagger 200 OK remove
+Put Felder optional
