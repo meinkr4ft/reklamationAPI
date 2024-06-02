@@ -192,32 +192,29 @@ Body Response (200 OK):
 ```json
 [
   {
-    {complaint},
-    {complaint},
-    {complaint},
-    {complaint}
+    "{complaint}",
+    "{complaint}",
+    "{...}"
   }
-  
 ]
 ```
 
 Schema zu complaint:
 ```json
 [
-    "id": {id},
-    "productId": {product_id},
+  {
+    "id": "{id}",
+    "productId": "{product_id}",
     "customer": {
       "email": "{email}",
       "name": "{name}"
     },
-    "date": "{date}",
+    "date": "{date: YY-MM-DD}",
     "description": "{description}",
-    "status": "{status}"
+    "status": "{status: 'Open', 'InProgress', 'Accepted', 'Rejected' oder 'Canceled'}"
   }
 ]
 ```
-Schema zu date: YY-MM-DD
-Schema zu status: "Open", "InProgress", "Accepted", "Rejected" oder "Canceled" 
 
 
 Beispiel Request:
