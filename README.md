@@ -192,14 +192,14 @@ Body Response (200 OK):
 ```json
 [
   {
-    "{complaint}",
-    "{complaint}",
+    "{complaint_response}",
+    "{complaint_response}",
     "{...}"
   }
 ]
 ```
 
-Schema zu complaint:
+Schema zu complaint_response:
 ```json
 [
   {
@@ -252,6 +252,64 @@ Beispiel Response Body:
 ]
 ```
 
+### 3. Einzelne Reklamation anzeigen
+Beschreibung: Endpunkt zur Anzeige einer einzelnen Reklamation anhand ihrer id.
+Method: **GET**  
+URL: **/api/Complaints/{id}**  
+Die ID ist Teil der URL.
+Es gibt keinen Body im Request.
+
+Body Response (200 OK):
+```json
+{
+  {complaint_response}
+}
+```
+
+[Schema zu complaint_response](#complaint_response)
+
+
+
+Beispiel Request:
+```curl
+curl -X 'GET' \
+  'https://localhost:7069/api/Complaints/1' \
+  -H 'accept: text/plain'
+```
+
+Beispiel Response Body:
+```json
+[
+{
+  "id": 1,
+  "productId": 101,
+  "customer": {
+    "email": "john.doe@example.com",
+    "name": "John Doe"
+  },
+  "date": "2023-05-28",
+  "description": "Das Produkt funktioniert nicht wie erwartet.",
+  "status": "Open"
+}
+]
+```
+
+### Schema zu Complaint response <a href="complaint_response"></a>
+```json
+[
+  {
+    "id": "{id}",
+    "productId": "{product_id}",
+    "customer": {
+      "email": "{email}",
+      "name": "{name}"
+    },
+    "date": "{date: YY-MM-DD}",
+    "description": "{description}",
+    "status": "{status: 'Open', 'InProgress', 'Accepted', 'Rejected' oder 'Canceled'}"
+  }
+]
+```
 
 ## Testbeschreibung
 
