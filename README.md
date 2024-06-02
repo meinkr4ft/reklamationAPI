@@ -1,7 +1,11 @@
 # ReklamationAPI
 RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tests.
 
-## Projektstruktur
+## Inhaltsverzeichnis
+1. [Projektstruktur](#project_structure)
+2. 
+
+## Projektstruktur <a name="project_structure"></a>
 ### ReklamationAPI
 => Hauptprojekt, das die RESTful API enthält
 
@@ -138,10 +142,13 @@ Das beim Login erhaltene Token, kann unter Authorize eingegeben werden, um es be
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/5ae6d696-cd78-4478-b1a4-a905f409b8b2)
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/257253a0-24ae-47f4-b93e-404ffc46a591)
 
+Im folgenden werden nur Anfragen beschrieben, die dem normalen Programmfluss entsprechen.
+Fehlerhafte oder unberechtigte Anfragen und Responses sind der Swagger Dokumentation zu entnehmen.
+
 ### 1. Login
 Beschreibung: Endpunkt zum Authentifizieren mit Logindaten, um ein Authentication Token zu erhalten.
-Method: POST  
-URL: /api/Auth/login  
+Method: **POST**  
+URL: **/api/Auth/login**  
 Body Request: 
 ```json
 {
@@ -150,7 +157,7 @@ Body Request:
 }
 ```
 
-Body Response:
+Body Response (200 OK):
 ```json
 {
   "token": "{token}"
@@ -175,6 +182,59 @@ Beispiel Response Body:
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzE3Mjk5NTI4LCJleHAiOjE3MTc5MDQzMjgsImlhdCI6MTcxNzI5OTUyOCwiaXNzIjoiUmVrbGFtYXRpb25BUElJc3N1ZXIiLCJhdWQiOiJSZWtsYW1hdGlvbkFQSUF1ZGllbmNlIn0.BDtMjf0PvuZPHKV07e45uQLHkxpZvcssnyW8_0LgdhY"
 }
 ```
+### 2. Alle Reklamationen anzeigen
+Beschreibung: Endpunkt zum Authentifizieren mit Logindaten, um ein Authentication Token zu erhalten.
+Method: **GET**  
+URL: **/api/Complaints**  
+Keine URL Parameter oder Body notwendig
+
+Body Response (200 OK):
+```json
+[
+  {
+    {[complaint1](#project_structure)},
+    {complaint2},
+    ...
+  }
+  
+]
+```
+
+Beispiel Request:
+```curl
+curl -X 'GET' \
+  'https://localhost:7069/api/Complaints' \
+  -H 'accept: text/plain'
+```
+
+Beispiel Response Body:
+```json
+[
+  {
+    "id": 1,
+    "productId": 101,
+    "customer": {
+      "email": "john.doe@example.com",
+      "name": "John Doe"
+    },
+    "date": "2023-05-28",
+    "description": "Das Produkt funktioniert nicht wie erwartet.",
+    "status": "Open"
+  },
+  {
+    "id": 2,
+    "productId": 54,
+    "customer": {
+      "email": "max.mustermann@example.com",
+      "name": "Max Mustermann"
+    },
+    "date": "2023-04-21",
+    "description": "Die Lieferung kam nicht an.",
+    "status": "Accepted"
+  }
+]
+```
+
 
 ## Testbeschreibung
 
