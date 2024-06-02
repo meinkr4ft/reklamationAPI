@@ -120,6 +120,10 @@ Dafür habe ich das Moq Framework genutzt, da das wohl das gängigste Tool ist.
 Aktuell sind 36 Unit Tests implementiert, die hauptsächlich die möglichen Szenarien bei Controller Aufrufen simulieren.
 
 ### Ent-to-End Test mit Python Skript
+Für einen E2E Test wollte ich einen Blackbox-Test umsetzen, der aus Sicht eines Anwenders geschehen soll.
+Da Python ohne großen Overhead sich dafür nutzen lässt, habe ich eine Reihe von aufeinanderefolgenden API Calls implementiert, die mit den entsprechenden GETs überprüft, ob die Daten richtig angelegt, aktualisiert und zurückgegeben werden.
 
 ## API Dokumentation
+
+
 ## Testbeschreibung
