@@ -138,8 +138,16 @@ Das beim Login erhaltene Token, kann unter Authorize eingegeben werden, um es be
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/5ae6d696-cd78-4478-b1a4-a905f409b8b2)
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/257253a0-24ae-47f4-b93e-404ffc46a591)
 
-
-
+### 1. Login
+Method: POST
+URL: /api/Auth/login
+Body: 
+```json
+{
+  "username": "{username}",
+  "password": "{password}"
+}
+```
 ## Testbeschreibung
 
 ## Luft nach oben
