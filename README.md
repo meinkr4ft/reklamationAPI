@@ -6,7 +6,7 @@ RESTful API zur Verwaltung von Produktreklamationen mit Unit-Tests und End-to-En
 2. [Installation](#installation)
 3. [Frameworks / Features / Designentscheidungen](#frameworks)
     - [API mit ASP.NET Core](#api)
-    - [Datenbank mit Sqlite / Entity Framework Code First Migration](#datenbank)
+    - [Datenbank mit SQLite / Entity Framework Code First Migration](#datenbank)
     - [Datenbankschema](#schema)
     - [Authentifizierung und Authorisierung mit JSON Web Token Bearer und UserIdentity](#auth)
     - [Benachrichtigungen mit Outbox-Tabelle und dediziertem Service](#outbox)
@@ -90,9 +90,9 @@ python testReklamationAPI.py
 ### API mit ASP.NET Core <a name="api"></a>
 Die Wahl fiel für mich auf ASP.NET Core, da ich zwar schon ein paar Erfahrungen damit gemacht habe, bisher jedoch noch keine RESTful API damit implementiert habe. Dadurch stellt das Projekt für mich eine gute Herausforderung und Übung zugleich dar. 
 
-### Datenbank mit Sqlite / Entity Framework Code First Migration <a name="datenbank"></a>
-Im Rahmen des Projekts erschien mir eine Sqlite Datenbank passend, die ohne großen Aufwand einrichten und direkt nutzen kann.\
-Das Entity Framework habe genutzt, da keine bsonderen Ansprüche an die Datenbank bestehen und der Microsoft Standard volkommen ausreichend sein sollte.\
+### Datenbank mit SQLite / Entity Framework Code First Migration <a name="datenbank"></a>
+Im Rahmen des Projekts erschien mir eine SQLite Datenbank passend, die ohne großen Aufwand einrichten und direkt nutzen kann.\
+Das Entity Framework habe genutzt, da keine besonderen Ansprüche an die Datenbank bestehen und der Microsoft Standard vollkommen ausreichend sein sollte.\
 Außerdem ist die Integration der Datenbank durch Code First Migration erleichtert.\
 Die Datenbank liegt unter ReklamationAPI/Database/app.db
 
@@ -120,7 +120,7 @@ OutboxMessages Table:
 
 Zusätzlich noch Tables, die durch das Framework zur Authentifizierung erstellt wurden.
 
-### Authentifizierung und Authorisierung mit JSON Web Token Bearer und UserIdentity <a name="auth"></a>
+### Authentifizierung und Autorisierung mit JSON Web Token Bearer und UserIdentity <a name="auth"></a>
 Mit dem JSON Web Token ließ sich clientseitig eine simple Authentifizierung umsetzen. Nach dem Login muss das generierte Token im Header nachfolgender Requests angegeben werden.\
 Es gibt die Rollen "Admin" und "User", wobei nur die Admin-Rolle für schreibende Requests berechtigt ist.\
 Die Benutzerverwaltung in der Datenbank ist mit dem Entity Framework Identity Kontext umgesetzt, da diese auch direkt out of the box nutzbar ist und den Anforderungen genügt.\
