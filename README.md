@@ -71,9 +71,9 @@ python testReklamationAPI.py
 Die Wahl fiel für mich auf ASP.NET Core, da ich zwar schon ein paar Erfahrungen damit gemacht habe, bisher jedoch noch keine RESTful API damit implementiert habe. Dadurch stellt das Projekt für mich eine gute Herausforderung und Übung zugleich dar. 
 
 ### Datenbank mit Sqlite / Entity Framework Code First Migration
-Im Rahmen des Projekts erschien mir eine Sqlite Datenbank passend, die ohne großen Aufwand einrichten und direkt nutzen kann.
-Das Entity Framework habe genutzt, da keine bsonderen Ansprüche an die Datenbank bestehen und der Microsoft Standard volkommen ausreichend sein sollte.
-Außerdem ist die Integration der Datenbank durch Code First Migration erleichtert.
+Im Rahmen des Projekts erschien mir eine Sqlite Datenbank passend, die ohne großen Aufwand einrichten und direkt nutzen kann.\
+Das Entity Framework habe genutzt, da keine bsonderen Ansprüche an die Datenbank bestehen und der Microsoft Standard volkommen ausreichend sein sollte.\
+Außerdem ist die Integration der Datenbank durch Code First Migration erleichtert.\
 Die Datenbank liegt unter ReklamationAPI/Database/app.db
 
 ### Datenbankschema
@@ -105,7 +105,7 @@ Mit dem JSON Web Token ließ sich clientseitig eine simple Authentifizierung ums
 Es gibt die Rollen "Admin" und "User", wobei nur die Admin-Rolle für schreibende Requests berechtigt ist.\
 Die Benutzerverwaltung in der Datenbank ist mit dem Entity Framework Identity Kontext umgesetzt, da diese auch direkt out of the box nutzbar ist und den Anforderungen genügt.\
 Logindaten Admin: admin Admin!123\
-Logindaten User:  user  User!123\
+Logindaten User:  user  User!123
 
 ### Benachrichtigungen mit Outbox-Tabelle und dediziertem Service
 Bei gewissen verändernden Zugriffen auf die API sollen die betroffenen Nutzer benachrichtigt werden, was durch einen Eintrag in die Outbox-Tabelle und einen entsprechenden verarbeitenden Service umgesetzt wird.\
@@ -394,7 +394,97 @@ curl -X 'DELETE' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzE3MzAzMzQxLCJleHAiOjE3MTc5MDgxNDEsImlhdCI6MTcxNzMwMzM0MSwiaXNzIjoiUmVrbGFtYXRpb25BUElJc3N1ZXIiLCJhdWQiOiJSZWtsYW1hdGlvbkFQSUF1ZGllbmNlIn0.0b3djRHCxgz1PSkFef0pR8vFfGyVxe73OZyXjgwHdYk'
 ```
 
+### 7. Suche von Reklamationen
+Beschreibung: Endpunkt zur Suche von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **mindestens ein Kriterium** erfüllen.
+Method: **GET**\
+URL: **/api/Complaints/search**\
+Berechtigung: Jeder\
+Die Parameter werden als URL Parameter angegeben. Alle Parameter sind **optional**.\
+Kein Body notwendig.
 
+Mögliche Parameter:
+- productId
+- customerName
+- customerEmail
+- date
+- description
+- status
+- ignoreCase
+- 
+Body Response (200 OK):
+```json
+{
+  {searchDto}
+  },
+  "complaints": [
+    "{complaint}",
+    "{complaint}",
+    "{...}"
+  ]
+}
+```
+[Schema zu search_dto](#search_dto)
+Das Search-DTO kapselt die Suchparameter.
+[Schema zu complaint_response](#complaint_response)
+
+
+Beispiel Request:
+```curl
+curl -X 'GET' \
+  'https://localhost:7069/api/Complaints/search?customerName=Max&status=Open&ignoreCase=true' \
+  -H 'accept: text/plain'
+```
+
+Beispiel Response Body:
+```json
+{
+  "searchDto": {
+    "operation": "search",
+    "productId": null,
+    "customerName": "Max",
+    "customerEmail": null,
+    "date": null,
+    "description": null,
+    "status": "Open",
+    "ignoreCase": true
+  },
+  "complaints": [
+    {
+      "id": 1,
+      "productId": 101,
+      "customer": {
+        "email": "max.schmidt@gmail.com",
+        "name": "Max Schmidt"
+      },
+      "date": "2023-05-28",
+      "description": "Das Produkt funktioniert nicht wie erwartet.",
+      "status": "Open"
+    },
+    {
+      "id": 2,
+      "productId": 54,
+      "customer": {
+        "email": "maximilian.weber@web.de",
+        "name": "Maximilian Weber"
+      },
+      "date": "2023-04-21",
+      "description": "Die Lieferung kam nicht an.",
+      "status": "Rejected"
+    },
+    {
+      "id": 3,
+      "productId": 20,
+      "customer": {
+        "email": "Sabine.Wagner@yahoo.de",
+        "name": "Sabine Wagner"
+      },
+      "date": "2023-03-12",
+      "description": "Falsches Produkt wurde geliefert.",
+      "status": "Open"
+    }
+  ]
+}
+```
 
 
 
@@ -415,7 +505,7 @@ curl -X 'DELETE' \
 ]
 ```
 
-### Schema zu Complaint response. <a name="complaint_dto"></a>
+### Schema zu Complaint dto. <a name="complaint_dto"></a>
 ```json
 [
   {
@@ -431,6 +521,21 @@ curl -X 'DELETE' \
 ]
 ```
 
+### Schema zu Search/Filter dto. <a name="complaint_dto"></a>
+```json
+[
+{
+    "operation": "{operation: 'search' oder 'filter'}",
+    "productId": "{product_id}",
+    "customerName": "{customer_name}",
+    "customerEmail": "{customer_email}",
+    "date": "{date: YY-MM-DD}",
+    "description": "{description}",
+    "status": "{status: 'Open', 'InProgress', 'Accepted', 'Rejected' oder 'Canceled'}"
+    "ignoreCase": "{ignore_case: true oder false}"
+  },
+]
+```
 
 
 ## Testbeschreibung
@@ -444,3 +549,6 @@ The created complaint will have the status "Open".
 
 Swagger 200 OK remove
 Put Felder optional
+
+search parameter als range
+auth header im request
