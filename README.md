@@ -22,7 +22,7 @@ RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tes
      - [Reklamationen abbrechen](#delete)
      - [Reklamationen suchen](#search)
      - [Reklamationen filtern](#filter)
-6. [Testfälle](#testfaelle)
+6. [Testbeschreibung](#testfaelle)
 7. [Verbesserungsmöglichkeiten](#verbesserungsmoeglichkeiten)
 
 ## Projektstruktur <a name="project_structure"></a>
@@ -644,7 +644,7 @@ Beispiel Response Body:
 ```
 
 
-## Testfälle <a name="testfaelle"></a>
+## Testbeschreibung <a name="testfaelle"></a>
 Neben automatisierten Unit oder E2E Tests, lassen sich auf Testfälle definieren, die beispielsweise über das Swagger UI durchgeführt werden können.\
 Exemplarisch werden ein paar mögliche Testfälle beschrieben.
 
@@ -671,8 +671,14 @@ Testschritte:\
 - Suche verfeinern, indem numerische Parameter auch eine Range darstellen können
 - Eigene Datenbank für den Test Einrichten
 - Parametrisierung der Konfiguration (z.B. Port)
+- Anbindung eines SMTP-Service für Email Benachrichtigungen
 - Refactoring des Codes, Umstrukturierung, Best Practices etc.
-
+- 2 kleinere Probleme mit Swagger, zu denen ich noch keine Lösung gefunden habe.
+1. Bei Responses wird immer der Code 200 angezeigt, auch wenn ich explizit nur andere Codes angebe
+https://github.com/swagger-api/swagger-core/issues/4044
+2. Die Parameter Beispiele lassen sich nicht als Placeholder definieren, sodass sie bei der Eingabe verschwinden.\
+So muss man bei der Suche erst alle Parameter löschen, die man nicht braucht.
+https://github.com/swagger-api/swagger-ui/issues/3920
 
 
 Fix Creates a new complaint.
