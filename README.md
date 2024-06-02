@@ -23,11 +23,11 @@ RESTful API zur Verwaltung von Produktreklamationen mit Unit-Tests und End-to-En
      - [Reklamationen suchen](#search)
      - [Reklamationen filtern](#filter)
 6. [Testbeschreibung](#testfaelle)
-     - [gettest](#gettest)
-     - [posttest](#posttest)
-     - [puttest](#puttest)
-     - [deletetest](#deletetest)
-     - [searchtest](#searchtest)
+     - [Reklamationen anzeigen](#gettest)
+     - [Reklamation erstellen](#posttest)
+     - [Reklamation aktualisieren](#puttest)
+     - [Reklamation abbrechen](#deletetest)
+     - [Reklamationen suchen](#searchtest)
 7. [Verbesserungsmöglichkeiten](#verbesserungsmoeglichkeiten)
 
 ## Projektstruktur <a name="project_structure"></a>
