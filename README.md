@@ -156,7 +156,8 @@ https://localhost:7069/
 
 ### Swagger Dokumentation unter: <a name="swagger-dokumentation"></a>
 https://localhost:7069/swagger/index.html
-![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/88f8a4b6-28b4-43f9-b30b-c7000779f516)
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/668a4695-222b-4066-a5d3-cac451526328)
+
 
 Das beim Login erhaltene Token, kann unter Authorize eingegeben werden, um es bei folgenden Requests im Header zu inkludieren.
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/5ae6d696-cd78-4478-b1a4-a905f409b8b2)
