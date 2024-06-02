@@ -187,7 +187,7 @@ Beispiel Response Body:
 Beschreibung: Endpunkt zur Anzeige aller Reklamationen.
 Method: **GET**  
 URL: **/api/Complaints**  
-Keine URL Parameter oder Body notwendig
+Keine URL Parameter oder Body notwendig.
 
 Body Response (200 OK):
 ```json
@@ -248,7 +248,7 @@ Es gibt keinen Body im Request.
 Body Response (200 OK):
 ```json
 {
-  {complaint_response}
+  "{complaint_response}"
 }
 ```
 
