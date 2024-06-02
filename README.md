@@ -1,5 +1,5 @@
 # ReklamationAPI
-RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tests.
+RESTful API zur Verwaltung von Produktreklamationen mit Unit-Tests und End-to-End-Tests.
 
 ## Inhaltsverzeichnis
 1. [Projektstruktur](#projektstruktur)
