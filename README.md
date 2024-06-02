@@ -691,7 +691,7 @@ Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden.
 
 
 ### 3. Reklamation aktualisieren <a name="puttest"></a>
-Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Reklamation mit Status anders als "Canceled" ist in der Datenbank vorhanden\
+Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Reklamation mit Status "Open" oder "InProgress" ist in der Datenbank vorhanden\
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/028f8af5-6428-4a47-a651-fcb0f8cbef4f)
 
 1. POST auf /api/auth/login mit Nutzerdaten im body (Schema: siehe. [API Dokumentation](#api-dokumentation))\
@@ -709,8 +709,8 @@ Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Rekla
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/9e3c5c2b-d70c-4ab3-af63-60a93a23cdca)
 
 ### 4. Reklamation löschen <a name="deletetest"></a>
-Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Reklamation mit Status "Open" oder "InProgress" ist in der Datenbank vorhanden\
-![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/820c1ff0-a81f-4143-b019-77bb96e0d9ba)
+Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Reklamation mit Status anders als "Canceled" ist in der Datenbank vorhanden\
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/9e3c5c2b-d70c-4ab3-af63-60a93a23cdca)
 
 1. POST auf /api/auth/login mit Nutzerdaten im body (Schema: siehe. [API Dokumentation](#api-dokumentation))\
 -> 200 OK. Es wird ein Authentifizierungstoken zurückgesendet.
