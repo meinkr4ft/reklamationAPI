@@ -192,9 +192,10 @@ Body Response (200 OK):
 ```json
 [
   {
-    {complaint1},
-    {complaint2},
-    ...
+    {complaint},
+    {complaint},
+    {complaint},
+    {complaint}
   }
   
 ]
@@ -209,12 +210,15 @@ Schema zu complaint:
       "email": "{email}",
       "name": "{name}"
     },
-    "date": "{date: YY-MM-DD}",
+    "date": "{date}",
     "description": "{description}",
-    "status": "{status: "Open", "InProgress", "Accepted", "Rejected" oder "Canceled"}"
+    "status": "{status}"
   }
 ]
 ```
+Schema zu date: YY-MM-DD
+Schema zu status: "Open", "InProgress", "Accepted", "Rejected" oder "Canceled" 
+
 
 Beispiel Request:
 ```curl
