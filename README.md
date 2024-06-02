@@ -27,13 +27,13 @@ RESTful API zur Verwaltung von Produktreklamationen mit Unit-Tests und End-to-En
 
 ## Projektstruktur <a name="project_structure"></a>
 ### ReklamationAPI
-=> Hauptprojekt, das die RESTful API enthält
+=> Hauptprojekt, das die RESTful API enthält.
 
 ### ReklamationAPI.Tests
-=> Testprojekt mit Unit-Tests für die API
+=> Testprojekt mit Unit-Tests für die API.
 
 ### Python E2E Test
-=> Python Skript als E2E-Blackbox-Test
+=> Python Skript als E2E-Blackbox-Test.
 
 
 ## Installation <a name="installation"></a>
