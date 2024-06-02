@@ -28,8 +28,6 @@ namespace ReklamationAPI.Controllers
         /// <response code="200">OK if the login is successful.</response>
         /// <response code="401">Unauthorized if the login fails.</response>
         [HttpPost("login")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(LoginResponse))]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(LoginResponseExample))]
         public async Task<IActionResult> Login(LoginDto loginDto)

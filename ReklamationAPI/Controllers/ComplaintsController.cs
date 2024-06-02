@@ -199,11 +199,7 @@ namespace ReklamationAPI.Controllers
         /// <response code="403">Forbidden if the provided token does not belong to an admin user.</response>
         /// <response code="404">Not found if the complaint with the specified ID does not exist.</response>
         [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType()]
         [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> DeleteComplaint(int id)
         {
@@ -263,8 +259,6 @@ namespace ReklamationAPI.Controllers
         /// <response code="404">Not found there are no search results.</response>
         [Route("search")]
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(SearchResponse))]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(SearchResponseExample))]
         public async Task<ActionResult<SearchResponse>> Search([SwaggerParameter(Description = "Product id")][FromQuery] int? productId,
@@ -305,8 +299,6 @@ namespace ReklamationAPI.Controllers
         /// <response code="404">Not found there are no filter results.</response>
         [Route("filter")]
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(FilterResponse))]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(FilterResponseExample))]
         public async Task<ActionResult<FilterResponse>> Filter([SwaggerParameter(Description = "Product id")][FromQuery] int? productId,
