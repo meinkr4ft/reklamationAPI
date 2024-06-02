@@ -14,3 +14,30 @@ Python (End-to-End-Test)
 pip install requests
 pip install urllib3
 ```
+
+### Build
+C# mit Visual Studio 2022 oder von der command line:
+```console
+msbuild ReklamationAPI.sln /p:Configuration=Release
+```
+
+### Start
+C# Hauptprojekt:
+```console
+cd ReklamationAPI\bin\Release\net8.0
+dotnet ReklamationAPI.dll
+```
+
+C# Testprojekt:
+```console
+cd ReklamationAPI.Tests\bin\Release\net8.0
+dotnet ReklamationAPI.Tests.dll
+```
+
+# Python E2E Test
+Nach Start der API mit folgendem Befehl:
+```console
+cd Python E2E Test
+python testReklamationAPI.py
+```
+
