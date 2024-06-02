@@ -23,12 +23,14 @@ msbuild ReklamationAPI.sln /p:Configuration=Release
 
 ### Start
 C# Hauptprojekt:
+Entweder in Visual Studio 2022 oder con der command line:
 ```console
 cd ReklamationAPI\bin\Release\net8.0
 dotnet ReklamationAPI.dll
 ```
 
 C# Testprojekt:
+Entweder in Visual Studio 2022 oder con der command line:
 ```console
 cd ReklamationAPI.Tests\bin\Release\net8.0
 dotnet ReklamationAPI.Tests.dll
