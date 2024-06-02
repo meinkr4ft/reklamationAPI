@@ -24,7 +24,7 @@ git clone https://github.com/meinkr4ft/reklamationAPI.git
 C# mit Visual Studio 2022 oder von der command line:
 ```console
 # nuget packages
-visual studio install required packages cli
+Update-Package -reinstall
 
 # release build
 msbuild ReklamationAPI.sln /p:Configuration=Release
