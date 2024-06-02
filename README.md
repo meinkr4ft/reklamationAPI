@@ -5,9 +5,25 @@ RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tes
 1. [Projektstruktur](#projektstruktur)
 2. [Installation](#installation)
 3. [Frameworks / Features / Designentscheidungen](#frameworks)
+    - [API mit ASP.NET Core](#api)
+    - [Datenbank mit Sqlite / Entity Framework Code First Migration](#datenbank)
+    - [Datenbankschema](#schema)
+    - [Authentifizierung und Authorisierung mit JSON Web Token Bearer und UserIdentity](#auth)
+    - [Benachrichtigungen mit Outbox-Tabelle und dediziertem Service](#outbox)
+    - [Integrierte Swagger zur Dokumentation der API mit Swashbuckle](#swagger)
+    - [Unit Tests mit MSTest, EF InMemory und Moq](#tests)
+    - [End-to-End Test mit Python Skript](#e2e)
 4. [API Dokumentation](#api-dokumentation)
-5. [Testfälle](#testfaelle)
-6. [Verbesserungsmöglichkeiten](#verbesserungsmoeglichkeiten)
+     1. [Login](#login)
+     2. [Alle Reklamationen anzeigen](#getall)
+     3. [Eine Reklamation anzeigen](#get)
+     4. [Reklamatione erstellen](#post)
+     5. [Reklamation aktualisieren](#put)
+     6. [Reklamation abbrechen](#delete)
+     7. [Reklamationen suchen](#search)
+     8. [Reklamationen filtern](#filter)
+6. [Testfälle](#testfaelle)
+7. [Verbesserungsmöglichkeiten](#verbesserungsmoeglichkeiten)
 
 ## Projektstruktur <a name="project_structure"></a>
 ### ReklamationAPI
@@ -71,16 +87,16 @@ python testReklamationAPI.py
 ```
 
 ## Frameworks / Features / Designentscheidungen <a name="frameworks"></a>
-### API mit ASP.NET Core
+### API mit ASP.NET Core <a name="api"></a>
 Die Wahl fiel für mich auf ASP.NET Core, da ich zwar schon ein paar Erfahrungen damit gemacht habe, bisher jedoch noch keine RESTful API damit implementiert habe. Dadurch stellt das Projekt für mich eine gute Herausforderung und Übung zugleich dar. 
 
-### Datenbank mit Sqlite / Entity Framework Code First Migration
+### Datenbank mit Sqlite / Entity Framework Code First Migration <a name="datenbank"></a>
 Im Rahmen des Projekts erschien mir eine Sqlite Datenbank passend, die ohne großen Aufwand einrichten und direkt nutzen kann.\
 Das Entity Framework habe genutzt, da keine bsonderen Ansprüche an die Datenbank bestehen und der Microsoft Standard volkommen ausreichend sein sollte.\
 Außerdem ist die Integration der Datenbank durch Code First Migration erleichtert.\
 Die Datenbank liegt unter ReklamationAPI/Database/app.db
 
-### Datenbankschema
+### Datenbankschema <a name="schema"></a>
 Implementierung mit einer 1 zu n Beziehung zwischen Customer und Complaint.
 Customers Table:
 - Email (Primärschlüssel)
@@ -104,18 +120,18 @@ OutboxMessages Table:
 
 Zusätzlich noch Tables, die durch das Framework zur Authentifizierung erstellt wurden.
 
-### Authentifizierung und Authorisierung mit JSON Web Token Bearer und UserIdentity
+### Authentifizierung und Authorisierung mit JSON Web Token Bearer und UserIdentity <a name="auth"></a>
 Mit dem JSON Web Token ließ sich clientseitig eine simple Authentifizierung umsetzen. Nach dem Login muss das generierte Token im Header nachfolgender Requests angegeben werden.\
 Es gibt die Rollen "Admin" und "User", wobei nur die Admin-Rolle für schreibende Requests berechtigt ist.\
 Die Benutzerverwaltung in der Datenbank ist mit dem Entity Framework Identity Kontext umgesetzt, da diese auch direkt out of the box nutzbar ist und den Anforderungen genügt.\
 Logindaten Admin: admin Admin!123\
 Logindaten User:  user  User!123
 
-### Benachrichtigungen mit Outbox-Tabelle und dediziertem Service
+### Benachrichtigungen mit Outbox-Tabelle und dediziertem Service <a name="outbox"></a>
 Bei gewissen verändernden Zugriffen auf die API sollen die betroffenen Nutzer benachrichtigt werden, was durch einen Eintrag in die Outbox-Tabelle und einen entsprechenden verarbeitenden Service umgesetzt wird.\
 Konzeptuell sind die Benachrichtigungen als Email gedacht, jedoch werden diese aufgrund fehlender Anbindung an ein SMTP-Server lediglich als Textdatei im Verzeichnis ReklamationAPI/emails prototypisch abgelegt.
 
-### Integrierte Swagger zur Dokumentation der API mit Swashbuckle
+### Integrierte Swagger zur Dokumentation der API mit Swashbuckle <a name="swagger"></a>
 Für die OpenAPI Dokumentation wird ein Swagger UI generiert, dass Informationen zu den Endpunkten bereitstellt.\
 Zusätzlich wird mit der Swashbuckle Bibliothek noch Zusatzinformationen bereitgestellt (über Annotationen, XML Kommentare und Example Klassen:\
 - Beschreibung der einzelnen API Aufrufe.
@@ -123,14 +139,14 @@ Zusätzlich wird mit der Swashbuckle Bibliothek noch Zusatzinformationen bereitg
 - Beispiel Response / Schema
 - Beschreibung der Request Parameter und Standardwerte
 
-### Unit Tests mit MSTest, EF InMemory und Moq
+### Unit Tests mit MSTest, EF InMemory und Moq <a name="tests"></a>
 Unit Tests wurden mit dem Microsoft Standard Framework MSTest implementiert.\
 Als Testdatenbank wird eine Entity Framework InMemory-Datenbank verwendet, die vor dem Test Beispieldaten erhält.\
 Abhängigkeiten zu Services (Authentification, Usermanager) wurden mit Mock Implementierung der enstprechenden Interfaces und den Controllern bereitgestellt.\
 Dafür habe ich das Moq Framework genutzt, da das wohl das gängigste Tool ist.\
 Aktuell sind 36 Unit Tests implementiert, die hauptsächlich die möglichen Szenarien bei Controller Aufrufen simulieren.
 
-### End-to-End Test mit Python Skript
+### End-to-End Test mit Python Skript <a name="e2e"></a>
 Für einen E2E Test wollte ich einen Blackbox-Test umsetzen, der aus Sicht eines Anwenders geschehen soll.\
 Da Python ohne großen Overhead sich dafür nutzen lässt, habe ich eine Reihe von aufeinanderefolgenden API Calls implementiert, die mit den entsprechenden GETs überprüft, ob die Daten richtig angelegt, aktualisiert und zurückgegeben werden.
 
@@ -138,7 +154,7 @@ Da Python ohne großen Overhead sich dafür nutzen lässt, habe ich eine Reihe v
 Die Basisurl lautet:
 https://localhost:7069/
 
-### Swagger Dokumentation unter:
+### Swagger Dokumentation unter: <a name="swagger-dokumentation"></a>
 https://localhost:7069/swagger/index.html
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/88f8a4b6-28b4-43f9-b30b-c7000779f516)
 
@@ -149,7 +165,7 @@ Das beim Login erhaltene Token, kann unter Authorize eingegeben werden, um es be
 Im folgenden werden nur Anfragen beschrieben, die dem normalen Programmfluss entsprechen.\
 Fehlerhafte oder unberechtigte Anfragen und Responses sind der Swagger Dokumentation zu entnehmen.\
 
-### 1. Login
+### 1. Login <a name="login"></a>
 Beschreibung: Endpunkt zum Authentifizieren mit Logindaten, um ein Authentication Token zu erhalten.\
 Method: **POST**\
 URL: **/api/Auth/login**\
@@ -187,7 +203,7 @@ Beispiel Response Body:
 }
 ```
 
-### 2. Alle Reklamationen anzeigen
+### 2. Alle Reklamationen anzeigen <a name="getall"></a>
 Beschreibung: Endpunkt zur Anzeige aller Reklamationen.\
 Method: **GET**\
 URL: **/api/Complaints**\
@@ -243,7 +259,7 @@ Beispiel Response Body:
 ]
 ```
 
-### 3. Einzelne Reklamation anzeigen
+### 3. Einzelne Reklamation anzeigen <a name="get"></a>
 Beschreibung: Endpunkt zur Anzeige einer einzelnen Reklamation anhand ihrer id.\
 Method: **GET**\
 URL: **/api/Complaints/{id}**\
@@ -286,7 +302,7 @@ Beispiel Response Body:
 ]
 ```
 
-### 4. Erstellen einer Reklamation
+### 4. Erstellen einer Reklamation <a name="post"></a>
 Beschreibung: Endpunkt zum Erstellen einer Reklamation, der nach der Erstellung die Reklamation (inkl. id) zurückgibt.\
 Method: **POST**\
 URL: **/api/Auth/login**\
@@ -342,7 +358,7 @@ Beispiel Response Body:
 }
 ```
 
-### 5. Aktualisieren einer Reklamation\
+### 5. Aktualisieren einer Reklamation <a name="put"></a>
 Beschreibung: Endpunkt zum Aktualisieren einer Reklamation anhand ihrer ID.\
 Method: **PUT**\
 URL: **/api/Auth/login/{id}**\
@@ -380,7 +396,7 @@ curl -X 'PUT' \
 }'
 ```
 
-### 6. Löschen einer Reklamation
+### 6. Löschen einer Reklamation <a name="delete"></a>
 Beschreibung: Endpunkt zum Abbruch einer Reklamation anhand ihrer ID. Hierbei wird der Status wird dabei auf "Canceled" geändert.\
 Method: **DELETE**\
 URL: **/api/Auth/login/{id}**\
@@ -398,7 +414,7 @@ curl -X 'DELETE' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzE3MzAzMzQxLCJleHAiOjE3MTc5MDgxNDEsImlhdCI6MTcxNzMwMzM0MSwiaXNzIjoiUmVrbGFtYXRpb25BUElJc3N1ZXIiLCJhdWQiOiJSZWtsYW1hdGlvbkFQSUF1ZGllbmNlIn0.0b3djRHCxgz1PSkFef0pR8vFfGyVxe73OZyXjgwHdYk'
 ```
 
-### 7. Suchen von Reklamationen
+### 7. Suchen von Reklamationen <a name="search"></a>
 Beschreibung: Endpunkt zur Suche von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **mindestens ein Kriterium** erfüllen.
 Method: **GET**\
 URL: **/api/Complaints/search**\
@@ -490,7 +506,7 @@ Beispiel Response Body:
 }
 ```
 
-### 8. Filtern von Reklamationen
+### 8. Filtern von Reklamationen <a name="filter"></a>
 Beschreibung: Endpunkt zum Filtern von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **alle Kriterien** erfüllen.
 Method: **GET**\
 URL: **/api/Complaints/filter**\
