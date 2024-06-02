@@ -109,7 +109,7 @@ Logindaten User:  user  User!123
 
 ### Benachrichtigungen mit Outbox-Tabelle und dediziertem Service
 Bei gewissen verändernden Zugriffen auf die API sollen die betroffenen Nutzer benachrichtigt werden, was durch einen Eintrag in die Outbox-Tabelle und einen entsprechenden verarbeitenden Service umgesetzt wird.\
-Konzeptuell sind die Benachrichtigungen als Email gedacht, jedoch werden diese aufgrund fehlender Anbindung an ein SMTP-Server lediglich als Textdatei im Verzeichnis ReklamationAPI/emails prototypisch abgelegt.\
+Konzeptuell sind die Benachrichtigungen als Email gedacht, jedoch werden diese aufgrund fehlender Anbindung an ein SMTP-Server lediglich als Textdatei im Verzeichnis ReklamationAPI/emails prototypisch abgelegt.
 
 ### Integrierte Swagger zur Dokumentation der API mit Swashbuckle
 Für die OpenAPI Dokumentation wird ein Swagger UI generiert, dass Informationen zu den Endpunkten bereitstellt.\
@@ -124,11 +124,11 @@ Unit Tests wurden mit dem Microsoft Standard Framework MSTest implementiert.\
 Als Testdatenbank wird eine Entity Framework InMemory-Datenbank verwendet, die vor dem Test Beispieldaten erhält.\
 Abhängigkeiten zu Services (Authentification, Usermanager) wurden mit Mock Implementierung der enstprechenden Interfaces und den Controllern bereitgestellt.\
 Dafür habe ich das Moq Framework genutzt, da das wohl das gängigste Tool ist.\
-Aktuell sind 36 Unit Tests implementiert, die hauptsächlich die möglichen Szenarien bei Controller Aufrufen simulieren.\
+Aktuell sind 36 Unit Tests implementiert, die hauptsächlich die möglichen Szenarien bei Controller Aufrufen simulieren.
 
 ### End-to-End Test mit Python Skript
 Für einen E2E Test wollte ich einen Blackbox-Test umsetzen, der aus Sicht eines Anwenders geschehen soll.\
-Da Python ohne großen Overhead sich dafür nutzen lässt, habe ich eine Reihe von aufeinanderefolgenden API Calls implementiert, die mit den entsprechenden GETs überprüft, ob die Daten richtig angelegt, aktualisiert und zurückgegeben werden.\
+Da Python ohne großen Overhead sich dafür nutzen lässt, habe ich eine Reihe von aufeinanderefolgenden API Calls implementiert, die mit den entsprechenden GETs überprüft, ob die Daten richtig angelegt, aktualisiert und zurückgegeben werden.
 
 ## API Dokumentation
 Die Basisurl lautet:
