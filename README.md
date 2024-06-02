@@ -1,4 +1,4 @@
-# reklamationAPI
+# ReklamationAPI
 RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tests.
 
 ## Projektstruktur
