@@ -143,7 +143,7 @@ Zusätzlich wird mit der Swashbuckle Bibliothek noch Zusatzinformationen bereitg
 Unit Tests wurden mit dem Microsoft Standard Framework MSTest implementiert.\
 Als Testdatenbank wird eine Entity Framework InMemory-Datenbank verwendet, die vor dem Test Beispieldaten erhält.\
 Abhängigkeiten zu Services (Authentification, Usermanager) wurden mit Mock Implementierung der enstprechenden Interfaces und den Controllern bereitgestellt.\
-Dafür habe ich das Moq Framework genutzt, da das wohl das gängigste Tool ist.\
+Dafür habe ich das Moq Framework genutzt, welches das gängigste Tool ist.\
 Aktuell sind 36 Unit Tests implementiert, die hauptsächlich die möglichen Szenarien bei Controller Aufrufen simulieren.
 
 ### End-to-End Test mit Python Skript <a name="e2e"></a>
