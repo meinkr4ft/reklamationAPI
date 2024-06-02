@@ -1,5 +1,5 @@
 # reklamationAPI
-RESTful API zur Verwaltung von Produktreklamationen mit ASP.NET Core
+RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tests.
 
 ### Voraussetzungen
 C# Web API (Haupt- und Testprojekt)
