@@ -4,6 +4,11 @@ RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tes
 ### Voraussetzungen
 C# Web API (Haupt- und Testprojekt)
 - .NET 8.0 Runtime
+- NuGet-Packages installieren mit Visual Studio 2022 oder von der command line
+```console
+Update-Package -reinstall
+```
+Update-Package -reinstall
 
 Python (End-to-End-Test)
 - Python >= 3.8
@@ -23,10 +28,6 @@ git clone https://github.com/meinkr4ft/reklamationAPI.git
 ### Build
 C# mit Visual Studio 2022 oder von der command line:
 ```console
-# nuget packages
-Update-Package -reinstall
-
-# release build
 msbuild ReklamationAPI.sln /p:Configuration=Release
 ```
 
