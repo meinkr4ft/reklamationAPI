@@ -1,0 +1,6 @@
+@ReklamationAPI_HostAddress = http://localhost:5161
+
+GET {{ReklamationAPI_HostAddress}}/api/Complaint
+Accept: application/json
+
+###
