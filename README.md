@@ -135,6 +135,10 @@ Logindaten User:  user  User!123
 ### Benachrichtigungen mit Outbox-Tabelle und dediziertem Service <a name="outbox"></a>
 Bei Daten verändernden Zugriffen auf die API sollen die betroffenen Nutzer benachrichtigt werden, was durch einen Eintrag in die Outbox-Tabelle und einen entsprechenden verarbeitenden Service umgesetzt wird.\
 Konzeptuell sind die Benachrichtigungen als Email gedacht, jedoch werden diese aufgrund fehlender Anbindung an ein SMTP-Server lediglich als Textdatei im Verzeichnis ReklamationAPI/emails prototypisch abgelegt.
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/5ce0f0d8-75bb-401a-95fd-c4cdef20d511)
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/727a8160-c519-4577-a42a-587d88753554)
+
+
 
 ### Integrierte Swagger zur Dokumentation der API mit Swashbuckle <a name="swagger"></a>
 Für die OpenAPI Dokumentation wird ein Swagger UI generiert, dass Informationen zu den Endpunkten bereitstellt.\
@@ -154,6 +158,8 @@ Aktuell sind 36 Unit Tests implementiert, die hauptsächlich die möglichen Szen
 ### End-to-End Test mit Python Skript <a name="e2e"></a>
 Für einen E2E Test wollte ich einen Blackbox-Test umsetzen, der aus Sicht eines Anwenders geschehen soll.\
 Da Python ohne großen Overhead sich dafür nutzen lässt, habe ich eine Reihe von aufeinanderefolgenden API Calls implementiert, die mit den entsprechenden GETs überprüft, ob die Daten richtig angelegt, aktualisiert und zurückgegeben werden.
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/ed31e2ba-dade-4a20-8cc7-781344872259)
+
 
 ## API Dokumentation <a name="api-dokumentation"></a>
 Die Basisurl lautet:
