@@ -70,6 +70,7 @@ Die Wahl fiel für mich auf ASP.NET Core, da ich zwar schon ein paar Erfahrungen
 Im Rahmen des Projekts erschien mir eine Sqlite Datenbank passend, die ohne großen Aufwand einrichten und direkt nutzen kann.
 Das Entity Framework habe genutzt, da keine bsonderen Ansprüche an die Datenbank bestehen und der Microsoft Standard volkommen ausreichend sein sollte.
 Außerdem ist die Integration der Datenbank durch Code First Migration erleichtert.
+Die Datenbank liegt unter ReklamationAPI/Database/app.db
 
 ### Datenbankschema
 Implementierung mit einer 1 zu n Beziehung zwischen Customer und Complaint.
@@ -99,6 +100,8 @@ Zusätzlich noch Tables, die durch das Framework zur Authentifizierung erstellt 
 Mit dem JSON Web Token ließ sich clientseitig eine simple Authentifizierung umsetzen. Nach dem Login muss das generierte Token im Header nachfolgender Requests angegeben werden.
 Es gibt die Rollen "Admin" und "User", wobei nur die Admin-Rolle für schreibende Requests berechtigt ist.
 Die Benutzerverwaltung in der Datenbank ist mit dem Entity Framework Identity Kontext umgesetzt, da diese auch direkt out of the box nutzbar ist und den Anforderungen genügt.
+Logindaten Admin: admin Admin!123
+Logindaten User:  user  User!123
 
 ### Benachrichtigungen mit Outbox-Tabelle und dediziertem Service
 Bei gewissen verändernden Zugriffen auf die API sollen die betroffenen Nutzer benachrichtigt werden, was durch einen Eintrag in die Outbox-Tabelle und einen entsprechenden verarbeitenden Service umgesetzt wird.
@@ -119,11 +122,24 @@ Abhängigkeiten zu Services (Authentification, Usermanager) wurden mit Mock Impl
 Dafür habe ich das Moq Framework genutzt, da das wohl das gängigste Tool ist.
 Aktuell sind 36 Unit Tests implementiert, die hauptsächlich die möglichen Szenarien bei Controller Aufrufen simulieren.
 
-### Ent-to-End Test mit Python Skript
+### End-to-End Test mit Python Skript
 Für einen E2E Test wollte ich einen Blackbox-Test umsetzen, der aus Sicht eines Anwenders geschehen soll.
 Da Python ohne großen Overhead sich dafür nutzen lässt, habe ich eine Reihe von aufeinanderefolgenden API Calls implementiert, die mit den entsprechenden GETs überprüft, ob die Daten richtig angelegt, aktualisiert und zurückgegeben werden.
 
 ## API Dokumentation
+Die Basisurl lautet:
+https://localhost:7069/
+
+### Swagger Dokumentation unter:
+https://localhost:7069/swagger/index.html
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/88f8a4b6-28b4-43f9-b30b-c7000779f516)
+
+Das beim Login erhaltene Token, kann unter Authorize eingegeben werden, um es bei folgenden Requests im Header zu inkludieren.
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/5ae6d696-cd78-4478-b1a4-a905f409b8b2)
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/257253a0-24ae-47f4-b93e-404ffc46a591)
+
 
 
 ## Testbeschreibung
+
+## Luft nach oben
