@@ -23,6 +23,11 @@ RESTful API zur Verwaltung von Produktreklamationen mit Unit-Tests und End-to-En
      - [Reklamationen suchen](#search)
      - [Reklamationen filtern](#filter)
 6. [Testbeschreibung](#testfaelle)
+     - [gettest](#gettest)
+     - [posttest](#posttest)
+     - [puttest](#puttest)
+     - [deletetest](#deletetest)
+     - [searchtest](#searchtest)
 7. [Verbesserungsmöglichkeiten](#verbesserungsmoeglichkeiten)
 
 ## Projektstruktur <a name="project_structure"></a>
@@ -650,7 +655,7 @@ Beispiel Response Body:
 Neben automatisierten Unit oder E2E Tests, lassen sich auf Testfälle definieren, die beispielsweise über das Swagger UI durchgeführt werden können.\
 Exemplarisch werden ein paar mögliche Testfälle beschrieben.
 
-### 1. Reklamationen anzeigen
+### 1. Reklamationen anzeigen <a name="gettest"></a>
 Vorbedingung: Mindestens ein Eintrag in der Complaints Tabelle in der Datenbank\
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/b2f73c77-dd3d-4256-aa38-f167bf39083c)
 
@@ -669,7 +674,7 @@ Testschritte:\
    ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/5c701ae3-9ee3-47a3-9e00-a9e9717f2ec5)
 
 
-### 2. Reklamation erstellen
+### 2. Reklamation erstellen <a name="posttest"></a>
 Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden\
 1. POST auf /api/auth/login mit Nutzerdaten im body (Schema: siehe. [API Dokumentation](#api-dokumentation))\
 -> 200 OK. Es wird ein Authentifizierungstoken zurückgesendet.
@@ -686,7 +691,7 @@ Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden\
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/028f8af5-6428-4a47-a651-fcb0f8cbef4f)
 
 
-### 3. Reklamation aktualisieren
+### 3. Reklamation aktualisieren <a name="puttest"></a>
 Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Reklamation mit Status anders als "Canceled" ist in der Datenbank vorhanden\
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/9e3c5c2b-d70c-4ab3-af63-60a93a23cdca)
 
@@ -704,7 +709,7 @@ Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Rekla
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/15376bd2-2739-4bb6-9e9f-8b5c92620733)
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/9e3c5c2b-d70c-4ab3-af63-60a93a23cdca)
 
-### 4. Reklamation löschen
+### 4. Reklamation löschen <a name="deletetest"></a>
 Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Reklamation mit Status "Open" oder "InProgress" ist in der Datenbank vorhanden\
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/820c1ff0-a81f-4143-b019-77bb96e0d9ba)
 
@@ -722,7 +727,7 @@ Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Rekla
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/f12ed1a8-b0ea-4de5-8fb6-cfaa5f52c81c)
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/decdc163-f8e0-4349-b59c-b63591f781e6)
 
-### 5. Reklamationen suchen
+### 5. Reklamationen suchen <a name="searchtest"></a>
 Vorbedingung: Mindestens ein Eintrag in der Complaints Tabelle in der Datenbank\
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/7d5dca3e-baed-46f4-9e00-e83aaa908450)
 
