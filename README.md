@@ -139,15 +139,43 @@ Das beim Login erhaltene Token, kann unter Authorize eingegeben werden, um es be
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/257253a0-24ae-47f4-b93e-404ffc46a591)
 
 ### 1. Login
-Method: POST
-URL: /api/Auth/login
-Body: 
+Beschreibung: Endpunkt zum Authentifizieren mit Logindaten, um ein Authentication Token zu erhalten.
+Method: POST  
+URL: /api/Auth/login  
+Body Request: 
 ```json
 {
   "username": "{username}",
   "password": "{password}"
 }
 ```
+
+Body Response:
+```json
+{
+  "token": "{token}"
+}
+```
+
+Beispiel Request:
+```curl
+curl -X 'POST' \
+  'https://localhost:7069/api/Auth/login' \
+  -H 'accept: text/plain' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "username": "admin",
+  "password": "Admin!123"
+}'
+```
+
+Beispiel Response Body:
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzE3Mjk5NTI4LCJleHAiOjE3MTc5MDQzMjgsImlhdCI6MTcxNzI5OTUyOCwiaXNzIjoiUmVrbGFtYXRpb25BUElJc3N1ZXIiLCJhdWQiOiJSZWtsYW1hdGlvbkFQSUF1ZGllbmNlIn0.BDtMjf0PvuZPHKV07e45uQLHkxpZvcssnyW8_0LgdhY"
+}
+```
+
 ## Testbeschreibung
 
 ## Luft nach oben
