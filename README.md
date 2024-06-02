@@ -134,8 +134,7 @@ Logindaten User:  user  User!123
 
 ### Benachrichtigungen mit Outbox-Tabelle und dediziertem Service <a name="outbox"></a>
 Bei Daten verändernden Zugriffen auf die API sollen die betroffenen Nutzer benachrichtigt werden, was durch einen Eintrag in die Outbox-Tabelle und einen entsprechenden verarbeitenden Service umgesetzt wird.\
-Konzeptuell sind die Benachrichtigungen als Email gedacht, jedoch werden diese aufgrund fehlender Anbindung an ein SMTP-Server lediglich als Textdatei im Verzeichnis ReklamationAPI/emails prototypisch abgelegt.
-![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/5ce0f0d8-75bb-401a-95fd-c4cdef20d511)
+Konzeptuell sind die Benachrichtigungen als Email gedacht, jedoch werden diese aufgrund fehlender Anbindung an ein SMTP-Server lediglich als Textdatei im Verzeichnis ReklamationAPI/emails prototypisch abgelegt.\
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/727a8160-c519-4577-a42a-587d88753554)
 
 
