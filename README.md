@@ -361,6 +361,7 @@ Beispiel Response Body:
 
 ### 5. Reklamationen aktualisieren <a name="put"></a>
 Beschreibung: Endpunkt zum Aktualisieren einer Reklamation anhand ihrer ID.\
+**Es können nur Reklamationen mit dem Status "Open" oder "InProgress" aktualisiert werden.**\
 Method: **PUT**\
 URL: **/api/Complaint/{id}**\
 Berechtigung: **Nur Admin**\
@@ -650,19 +651,85 @@ Neben automatisierten Unit oder E2E Tests, lassen sich auf Testfälle definieren
 Exemplarisch werden ein paar mögliche Testfälle beschrieben.
 
 ### 1. Reklamationen anzeigen
-Vorbedingung:\
+Vorbedingung: Mindestens ein Eintrag in der Complaints Tabelle in der Datenbank\
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/b2f73c77-dd3d-4256-aa38-f167bf39083c)
+
+
 Testschritte:\
+1. GET auf /api/Complaints/\
+-> 200 OK. Es werden die gleichen Reklamationen zurückgegeben, die sich in der Datenbank einsehen lassen.
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/114b790b-214b-4476-92c1-0de28965372f)
+
+2. GET auf /api/Complaints/350 (auf eine ID, die in der Datenbank existiert\
+-> 200 OK. Es wirden nur eine Reklamation zurückgegeben. Die Daten decken sich mit denen aus der Datenbank.
+   ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/386342c1-941a-40b7-a4e8-4c225316a9b8)
+
+3. GET auf /api/Complaints/250 (auf eine ID, die in der Datenbank nicht existiert)\
+-> 404 Not found. Eine entsprechende Nachricht ist in der Response enthalten.
+   ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/5c701ae3-9ee3-47a3-9e00-a9e9717f2ec5)
+
 
 ### 2. Reklamation erstellen
+Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden\
+1. POST auf /api/auth/login mit Nutzerdaten im body (Schema: siehe. [API Dokumentation](#api-dokumentation))\
+-> 200 OK. Es wird ein Authentifizierungstoken zurückgesendet.
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/a689bd83-cf29-412f-bd1f-3638fbac85ae)
+
+2. Eingabe des Tokens in das Swagger Authorize Feld und Klick auf Authorize
+-> Das Schloss Icon oben rechts wird geschlossen.
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/53ad0111-66e5-48c4-8f81-9bb5b4bded0b)
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/a8290510-940b-43dc-b39b-2d8642d78a19)
+
+3. POST auf /api/Complaints mit Complaint Objekt im body (Schema: siehe. [API Dokumentation](#api-dokumentation))\
+-> 201 Created. In der Response ist das Objekt mit ID angegeben. Die Erstellung lässt sich in der Datenbank verifizieren.
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/c8360105-d7d8-43b3-81de-3c4c907d6452)
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/028f8af5-6428-4a47-a651-fcb0f8cbef4f)
 
 
 ### 3. Reklamation aktualisieren
+Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Reklamation mit Status anders als "Canceled" ist in der Datenbank vorhanden\
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/9e3c5c2b-d70c-4ab3-af63-60a93a23cdca)
 
+1. POST auf /api/auth/login mit Nutzerdaten im body (Schema: siehe. [API Dokumentation](#api-dokumentation))\
+-> 200 OK. Es wird ein Authentifizierungstoken zurückgesendet.
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/a689bd83-cf29-412f-bd1f-3638fbac85ae)
+
+2. Eingabe des Tokens in das Swagger Authorize Feld und Klick auf Authorize
+-> Das Schloss Icon oben rechts wird geschlossen.
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/53ad0111-66e5-48c4-8f81-9bb5b4bded0b)
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/a8290510-940b-43dc-b39b-2d8642d78a19)
+
+3. DELETE auf /api/Complaints/359 (Id der Reklamation aus der Vorbedingung) ohne Body.\
+-> 204 No Content. Die Aktualisierung lässt sich in der Datenbank verifizieren.
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/15376bd2-2739-4bb6-9e9f-8b5c92620733)
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/9e3c5c2b-d70c-4ab3-af63-60a93a23cdca)
 
 ### 4. Reklamation löschen
+Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Reklamation mit Status "Open" oder "InProgress" ist in der Datenbank vorhanden\
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/820c1ff0-a81f-4143-b019-77bb96e0d9ba)
 
+1. POST auf /api/auth/login mit Nutzerdaten im body (Schema: siehe. [API Dokumentation](#api-dokumentation))\
+-> 200 OK. Es wird ein Authentifizierungstoken zurückgesendet.
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/a689bd83-cf29-412f-bd1f-3638fbac85ae)
+
+2. Eingabe des Tokens in das Swagger Authorize Feld und Klick auf Authorize
+-> Das Schloss Icon oben rechts wird geschlossen.
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/53ad0111-66e5-48c4-8f81-9bb5b4bded0b)
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/a8290510-940b-43dc-b39b-2d8642d78a19)
+
+3. DELETE auf /api/Complaints/359 (Id der Reklamation aus der Vorbedingung) mit Complaint Objekt im body (Schema: siehe. [API Dokumentation](#api-dokumentation))\
+-> 204 No Content. Der Status der Reklamation in der Datenbank wurde auf Canceled geändert.
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/f12ed1a8-b0ea-4de5-8fb6-cfaa5f52c81c)
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/decdc163-f8e0-4349-b59c-b63591f781e6)
 
 ### 5. Reklamationen suchen
+Vorbedingung: Mindestens ein Eintrag in der Complaints Tabelle in der Datenbank\
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/7d5dca3e-baed-46f4-9e00-e83aaa908450)
+
+1. GET auf /api/Complaints/search?status=open (Mit entsprechenden Parametern, die auf mindestens eine Reklamation zutreffen) (Schema: siehe. [API Dokumentation](#api-dokumentation))\
+-> 200 OK. Es werden die Suchkriterien sowie die Reklamationen zurückgegeben, die den Suchkriterien entsprechen..
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/09eea387-11aa-4c7c-86f2-5dc65f66a935)
+
 
 ## Verbesserungsmöglichkeiten <a name="verbesserungsmoeglichkeiten"></a>
 - Überlegung, ob die Properties beim PUT optional sein sollten oder nicht.
@@ -671,6 +738,7 @@ Testschritte:\
 - Parametrisierung der Konfiguration (z.B. Port)
 - Anbindung eines SMTP-Service für Email Benachrichtigungen
 - Refactoring des Codes, Umstrukturierung, Best Practices etc.
+- Testfälle, bei denen DB Fehler auftreten (Datenbank ist locked, keine Verbindung)
 - 2 kleinere Probleme mit Swagger, zu denen ich noch keine Lösung gefunden habe.
 1. Bei Responses wird immer der Code 200 angezeigt, auch wenn ich explizit nur andere Codes angebe
 https://github.com/swagger-api/swagger-core/issues/4044
