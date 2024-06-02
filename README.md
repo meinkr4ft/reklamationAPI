@@ -294,7 +294,7 @@ Beispiel Response Body:
 ]
 ```
 
-### Schema zu Complaint response <a href="complaint_response"></a>
+### Schema zu Complaint response <a name="complaint_response"></a>
 ```json
 [
   {
