@@ -15,6 +15,11 @@ pip install requests
 pip install urllib3
 ```
 
+### Clone
+```console
+git clone https://github.com/meinkr4ft/reklamationAPI.git
+```
+
 ### Build
 C# mit Visual Studio 2022 oder von der command line:
 ```console
