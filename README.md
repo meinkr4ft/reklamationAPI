@@ -4,7 +4,7 @@ RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tes
 ### Voraussetzungen
 C# Web API (Haupt- und Testprojekt)
 - .NET 8.0 Runtime
-- NuGet-Packages installieren mit Visual Studio 2022 oder von der command line
+- NuGet-Packages installieren mit Visual Studio 2022 in der Package Manager Console:
 ```console
 Update-Package -reinstall
 ```
