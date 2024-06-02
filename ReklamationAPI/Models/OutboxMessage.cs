@@ -34,8 +34,8 @@ namespace ReklamationAPI.Models
             this.Subject = $"Ihre Reklamation zu Produkt {complaint.ProductId}";
             this.Body = $"Guten Tag {complaint.Customer.Name},\n" +
                             $"\n" +
-                            $"{infoText})\n" +
-                            $"Informationen zu Ihrer Reklamation (Letzte Aktualisierung {this.Date}:\n" +
+                            $"{infoText}\n" +
+                            $"Informationen zu Ihrer Reklamation (Letzte Aktualisierung {this.Date}):\n" +
                             $"-Produkt ID: {complaint.Id}\n" +
                             $"-Email: {complaint.Customer.Email}\n" +
                             $"-Name: {complaint.Customer.Name}\n" +
