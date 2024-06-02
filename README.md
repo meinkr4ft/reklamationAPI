@@ -748,6 +748,7 @@ Vorbedingung: Mindestens ein Eintrag in der Complaints Tabelle in der Datenbank\
 - Anbindung eines SMTP-Service für Email Benachrichtigungen
 - Refactoring des Codes, Umstrukturierung, Best Practices etc.
 - Testfälle, bei denen DB Fehler auftreten (Datenbank ist locked, keine Verbindung)
+- Lösung für Get / Suche / Filter bei sehr vielen Datne in der Datenbank (Netzbelastung)
 - 2 kleinere Probleme mit Swagger, zu denen ich noch keine Lösung gefunden habe.
     1. Bei Responses wird immer der Code 200 angezeigt, auch wenn ich explizit nur andere Codes angebe
     https://github.com/swagger-api/swagger-core/issues/4044
