@@ -1,17 +1,17 @@
 # ReklamationAPI
-RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tests.
+RESTful API zur Verwaltung von Produktreklamationen mit Unit-Tests und End-to-End-Tests.
 
 ## Inhaltsverzeichnis
 1. [Projektstruktur](#projektstruktur)
 2. [Installation](#installation)
 3. [Frameworks / Features / Designentscheidungen](#frameworks)
     - [API mit ASP.NET Core](#api)
-    - [Datenbank mit Sqlite / Entity Framework Code First Migration](#datenbank)
+    - [Datenbank mit SQLite / Entity Framework Code First Migration](#datenbank)
     - [Datenbankschema](#schema)
     - [Authentifizierung und Authorisierung mit JSON Web Token Bearer und UserIdentity](#auth)
     - [Benachrichtigungen mit Outbox-Tabelle und dediziertem Service](#outbox)
     - [Integrierte Swagger zur Dokumentation der API mit Swashbuckle](#swagger)
-    - [Unit Tests mit MSTest, EF InMemory und Moq](#tests)
+    - [Unit Tests mit MSTest, Entity Framework InMemory Datenbank und Moq](#tests)
     - [End-to-End Test mit Python Skript](#e2e)
 4. [API Dokumentation](#api-dokumentation)
      - [Login](#login)
@@ -27,13 +27,13 @@ RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tes
 
 ## Projektstruktur <a name="project_structure"></a>
 ### ReklamationAPI
-=> Hauptprojekt, das die RESTful API enthält
+=> Hauptprojekt, das die RESTful API enthält.
 
 ### ReklamationAPI.Tests
-=> Testprojekt mit Unit-Tests für die API
+=> Testprojekt mit Unit-Tests für die API.
 
 ### Python E2E Test
-=> Python Skript als E2E-Blackbox-Test
+=> Python Skript als E2E-Blackbox-Test.
 
 
 ## Installation <a name="installation"></a>
@@ -88,11 +88,11 @@ python testReklamationAPI.py
 
 ## Frameworks / Features / Designentscheidungen <a name="frameworks"></a>
 ### API mit ASP.NET Core <a name="api"></a>
-Die Wahl fiel für mich auf ASP.NET Core, da ich zwar schon ein paar Erfahrungen damit gemacht habe, bisher jedoch noch keine RESTful API damit implementiert habe. Dadurch stellt das Projekt für mich eine gute Herausforderung und Übung zugleich dar. 
+Die Wahl fiel für mich auf ASP.NET Core, da ich zwar schon ein paar Erfahrungen damit gemacht habe, bisher jedoch noch keine RESTful API implementiert habe. Dadurch stellt das Projekt für mich eine gute Herausforderung und Übung zugleich dar. 
 
-### Datenbank mit Sqlite / Entity Framework Code First Migration <a name="datenbank"></a>
-Im Rahmen des Projekts erschien mir eine Sqlite Datenbank passend, die ohne großen Aufwand einrichten und direkt nutzen kann.\
-Das Entity Framework habe genutzt, da keine bsonderen Ansprüche an die Datenbank bestehen und der Microsoft Standard volkommen ausreichend sein sollte.\
+### Datenbank mit SQLite / Entity Framework Code First Migration <a name="datenbank"></a>
+Im Rahmen des Projekts erschien mir eine SQLite Datenbank passend, die man ohne großen Aufwand einrichten und direkt nutzen kann.\
+Das Entity Framework habe ich genutzt, da keine besonderen Ansprüche an die Datenbank bestehen und der Microsoft Standard vollkommen ausreichend sein sollte.\
 Außerdem ist die Integration der Datenbank durch Code First Migration erleichtert.\
 Die Datenbank liegt unter ReklamationAPI/Database/app.db
 
@@ -120,7 +120,7 @@ OutboxMessages Table:
 
 Zusätzlich noch Tables, die durch das Framework zur Authentifizierung erstellt wurden.
 
-### Authentifizierung und Authorisierung mit JSON Web Token Bearer und UserIdentity <a name="auth"></a>
+### Authentifizierung und Autorisierung mit JSON Web Token Bearer und UserIdentity <a name="auth"></a>
 Mit dem JSON Web Token ließ sich clientseitig eine simple Authentifizierung umsetzen. Nach dem Login muss das generierte Token im Header nachfolgender Requests angegeben werden.\
 Es gibt die Rollen "Admin" und "User", wobei nur die Admin-Rolle für schreibende Requests berechtigt ist.\
 Die Benutzerverwaltung in der Datenbank ist mit dem Entity Framework Identity Kontext umgesetzt, da diese auch direkt out of the box nutzbar ist und den Anforderungen genügt.\
@@ -128,7 +128,7 @@ Logindaten Admin: admin Admin!123\
 Logindaten User:  user  User!123
 
 ### Benachrichtigungen mit Outbox-Tabelle und dediziertem Service <a name="outbox"></a>
-Bei gewissen verändernden Zugriffen auf die API sollen die betroffenen Nutzer benachrichtigt werden, was durch einen Eintrag in die Outbox-Tabelle und einen entsprechenden verarbeitenden Service umgesetzt wird.\
+Bei Daten verändernden Zugriffen auf die API sollen die betroffenen Nutzer benachrichtigt werden, was durch einen Eintrag in die Outbox-Tabelle und einen entsprechenden verarbeitenden Service umgesetzt wird.\
 Konzeptuell sind die Benachrichtigungen als Email gedacht, jedoch werden diese aufgrund fehlender Anbindung an ein SMTP-Server lediglich als Textdatei im Verzeichnis ReklamationAPI/emails prototypisch abgelegt.
 
 ### Integrierte Swagger zur Dokumentation der API mit Swashbuckle <a name="swagger"></a>
@@ -139,11 +139,11 @@ Zusätzlich wird mit der Swashbuckle Bibliothek noch Zusatzinformationen bereitg
 - Beispiel Response / Schema
 - Beschreibung der Request Parameter und Standardwerte
 
-### Unit Tests mit MSTest, EF InMemory und Moq <a name="tests"></a>
+### Unit Tests mit MSTest, Entity Framework InMemory Datenbank und Moq <a name="tests"></a>
 Unit Tests wurden mit dem Microsoft Standard Framework MSTest implementiert.\
 Als Testdatenbank wird eine Entity Framework InMemory-Datenbank verwendet, die vor dem Test Beispieldaten erhält.\
 Abhängigkeiten zu Services (Authentification, Usermanager) wurden mit Mock Implementierung der enstprechenden Interfaces und den Controllern bereitgestellt.\
-Dafür habe ich das Moq Framework genutzt, da das wohl das gängigste Tool ist.\
+Dafür habe ich das Moq Framework genutzt, welches das gängigste Tool ist.\
 Aktuell sind 36 Unit Tests implementiert, die hauptsächlich die möglichen Szenarien bei Controller Aufrufen simulieren.
 
 ### End-to-End Test mit Python Skript <a name="e2e"></a>
@@ -156,7 +156,8 @@ https://localhost:7069/
 
 ### Swagger Dokumentation unter: <a name="swagger-dokumentation"></a>
 https://localhost:7069/swagger/index.html
-![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/88f8a4b6-28b4-43f9-b30b-c7000779f516)
+![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/668a4695-222b-4066-a5d3-cac451526328)
+
 
 Das beim Login erhaltene Token, kann unter Authorize eingegeben werden, um es bei folgenden Requests im Header zu inkludieren.
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/5ae6d696-cd78-4478-b1a4-a905f409b8b2)
@@ -169,7 +170,7 @@ Fehlerhafte oder unberechtigte Anfragen und Responses sind der Swagger Dokumenta
 Beschreibung: Endpunkt zum Authentifizieren mit Logindaten, um ein Authentication Token zu erhalten.\
 Method: **POST**\
 URL: **/api/Auth/login**\
-Body Request:\
+Body Request:
 ```json
 {
   "username": "{username}",
@@ -305,7 +306,7 @@ Beispiel Response Body:
 ### 4. Reklamationen erstellen <a name="post"></a>
 Beschreibung: Endpunkt zum Erstellen einer Reklamation, der nach der Erstellung die Reklamation (inkl. id) zurückgibt.\
 Method: **POST**\
-URL: **/api/Auth/login**\
+URL: **/api/Complaints**\
 Berechtigung: **Nur Admin**\
 Body Request:
 ```json
@@ -361,7 +362,7 @@ Beispiel Response Body:
 ### 5. Reklamationen aktualisieren <a name="put"></a>
 Beschreibung: Endpunkt zum Aktualisieren einer Reklamation anhand ihrer ID.\
 Method: **PUT**\
-URL: **/api/Auth/login/{id}**\
+URL: **/api/Complaint/{id}**\
 Berechtigung: **Nur Admin**\
 Die ID ist Teil der URL.\
 Body Request: 
@@ -371,7 +372,7 @@ Body Request:
 }
 ```
 
-[Schema zu complaint_dto](#complaint_dto)
+[Schema zu complaint_dto](#complaint_dto)\
 **Hinweis:** Nach aktueller Implementierung sind alle Felder beim PUT required, auch wenn deren Werte sich nicht ändern.
 
 Body Response: 204 No Content
@@ -399,10 +400,10 @@ curl -X 'PUT' \
 ### 6. Reklamationen abbrechen <a name="delete"></a>
 Beschreibung: Endpunkt zum Abbrechen einer Reklamation anhand ihrer ID. Hierbei wird der Status wird dabei auf "Canceled" geändert.\
 Method: **DELETE**\
-URL: **/api/Auth/login/{id}**\
+URL: **/api/Complaint/{id}**\
 Berechtigung: **Nur Admin**\
 Die ID ist Teil der URL.\
-Es ist kein body notwendig.\
+Es ist kein body notwendig.
 
 Body Response: 204 No Content
 
@@ -415,7 +416,7 @@ curl -X 'DELETE' \
 ```
 
 ### 7. Reklamationen suchen <a name="search"></a>
-Beschreibung: Endpunkt zur Suche von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **mindestens ein Kriterium** erfüllen.
+Beschreibung: Endpunkt zur Suche von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **mindestens ein Kriterium** erfüllen.\
 Method: **GET**\
 URL: **/api/Complaints/search**\
 Berechtigung: Jeder\
@@ -507,7 +508,7 @@ Beispiel Response Body:
 ```
 
 ### 8. Reklamationen filtern <a name="filter"></a>
-Beschreibung: Endpunkt zum Filtern von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **alle Kriterien** erfüllen.
+Beschreibung: Endpunkt zum Filtern von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **alle Kriterien** erfüllen.\
 Method: **GET**\
 URL: **/api/Complaints/filter**\
 Berechtigung: Jeder\
@@ -648,23 +649,20 @@ Beispiel Response Body:
 Neben automatisierten Unit oder E2E Tests, lassen sich auf Testfälle definieren, die beispielsweise über das Swagger UI durchgeführt werden können.\
 Exemplarisch werden ein paar mögliche Testfälle beschrieben.
 
-###1. Anzeigen von Reklamationen
-Vorbedingung\
+### 1. Reklamationen anzeigen
+Vorbedingung:\
 Testschritte:\
 
-###2. Erstellen einer Reklamation
+### 2. Reklamation erstellen
 
 
-###3. Aktualisieren einer Reklamation
+### 3. Reklamation aktualisieren
 
 
-###4. Löschen einer Reklamation
+### 4. Reklamation löschen
 
 
-###5. Suche von Reklamationen
-
-
-###6. Filtern von Reklamationen
+### 5. Reklamationen suchen
 
 ## Verbesserungsmöglichkeiten <a name="verbesserungsmoeglichkeiten"></a>
 - Überlegung, ob die Properties beim PUT optional sein sollten oder nicht.
