@@ -11,7 +11,7 @@ RESTful API zur Verwaltung von Produktreklamationen mit Unit-Tests und End-to-En
     - [Authentifizierung und Authorisierung mit JSON Web Token Bearer und UserIdentity](#auth)
     - [Benachrichtigungen mit Outbox-Tabelle und dediziertem Service](#outbox)
     - [Integrierte Swagger zur Dokumentation der API mit Swashbuckle](#swagger)
-    - [Unit Tests mit MSTest, EF InMemory und Moq](#tests)
+    - [Unit Tests mit MSTest, Entity Framework InMemory Datenbank und Moq](#tests)
     - [End-to-End Test mit Python Skript](#e2e)
 4. [API Dokumentation](#api-dokumentation)
      - [Login](#login)
@@ -88,11 +88,11 @@ python testReklamationAPI.py
 
 ## Frameworks / Features / Designentscheidungen <a name="frameworks"></a>
 ### API mit ASP.NET Core <a name="api"></a>
-Die Wahl fiel für mich auf ASP.NET Core, da ich zwar schon ein paar Erfahrungen damit gemacht habe, bisher jedoch noch keine RESTful API damit implementiert habe. Dadurch stellt das Projekt für mich eine gute Herausforderung und Übung zugleich dar. 
+Die Wahl fiel für mich auf ASP.NET Core, da ich zwar schon ein paar Erfahrungen damit gemacht habe, bisher jedoch noch keine RESTful API implementiert habe. Dadurch stellt das Projekt für mich eine gute Herausforderung und Übung zugleich dar. 
 
 ### Datenbank mit SQLite / Entity Framework Code First Migration <a name="datenbank"></a>
-Im Rahmen des Projekts erschien mir eine SQLite Datenbank passend, die ohne großen Aufwand einrichten und direkt nutzen kann.\
-Das Entity Framework habe genutzt, da keine besonderen Ansprüche an die Datenbank bestehen und der Microsoft Standard vollkommen ausreichend sein sollte.\
+Im Rahmen des Projekts erschien mir eine SQLite Datenbank passend, die man ohne großen Aufwand einrichten und direkt nutzen kann.\
+Das Entity Framework habe ich genutzt, da keine besonderen Ansprüche an die Datenbank bestehen und der Microsoft Standard vollkommen ausreichend sein sollte.\
 Außerdem ist die Integration der Datenbank durch Code First Migration erleichtert.\
 Die Datenbank liegt unter ReklamationAPI/Database/app.db
 
@@ -128,7 +128,7 @@ Logindaten Admin: admin Admin!123\
 Logindaten User:  user  User!123
 
 ### Benachrichtigungen mit Outbox-Tabelle und dediziertem Service <a name="outbox"></a>
-Bei gewissen verändernden Zugriffen auf die API sollen die betroffenen Nutzer benachrichtigt werden, was durch einen Eintrag in die Outbox-Tabelle und einen entsprechenden verarbeitenden Service umgesetzt wird.\
+Bei Daten verändernden Zugriffen auf die API sollen die betroffenen Nutzer benachrichtigt werden, was durch einen Eintrag in die Outbox-Tabelle und einen entsprechenden verarbeitenden Service umgesetzt wird.\
 Konzeptuell sind die Benachrichtigungen als Email gedacht, jedoch werden diese aufgrund fehlender Anbindung an ein SMTP-Server lediglich als Textdatei im Verzeichnis ReklamationAPI/emails prototypisch abgelegt.
 
 ### Integrierte Swagger zur Dokumentation der API mit Swashbuckle <a name="swagger"></a>
@@ -139,7 +139,7 @@ Zusätzlich wird mit der Swashbuckle Bibliothek noch Zusatzinformationen bereitg
 - Beispiel Response / Schema
 - Beschreibung der Request Parameter und Standardwerte
 
-### Unit Tests mit MSTest, EF InMemory und Moq <a name="tests"></a>
+### Unit Tests mit MSTest, Entity Framework InMemory Datenbank und Moq <a name="tests"></a>
 Unit Tests wurden mit dem Microsoft Standard Framework MSTest implementiert.\
 Als Testdatenbank wird eine Entity Framework InMemory-Datenbank verwendet, die vor dem Test Beispieldaten erhält.\
 Abhängigkeiten zu Services (Authentification, Usermanager) wurden mit Mock Implementierung der enstprechenden Interfaces und den Controllern bereitgestellt.\
