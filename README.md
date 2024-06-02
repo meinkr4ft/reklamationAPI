@@ -187,6 +187,7 @@ Beispiel Response Body:
 Beschreibung: Endpunkt zur Anzeige aller Reklamationen.
 Method: **GET**  
 URL: **/api/Complaints**  
+Berechtigung: Jeder
 Keine URL Parameter oder Body notwendig.
 
 Body Response (200 OK):
@@ -242,6 +243,7 @@ Beispiel Response Body:
 Beschreibung: Endpunkt zur Anzeige einer einzelnen Reklamation anhand ihrer id.
 Method: **GET**  
 URL: **/api/Complaints/{id}**  
+Berechtigung: Jeder
 Die ID ist Teil der URL.
 Es gibt keinen Body im Request.
 
@@ -284,10 +286,11 @@ Beispiel Response Body:
 Beschreibung: Endpunkt zum Erstellen einer Reklamation, der nach der Erstellung die Reklamation (inkl. id) zurückgibt.
 Method: **POST**  
 URL: **/api/Auth/login**  
+Berechtigung: **Nur Admin**
 Body Request: 
 ```json
 {
-  {complaint_dto}
+  "{complaint_dto}"
 }
 ```
 
@@ -296,7 +299,7 @@ Body Request:
 Body Response (201 Created):
 ```json
 {
-  {complaint_response}
+  "{complaint_response}"
 }
 ```
 
@@ -336,9 +339,10 @@ Beispiel Response Body:
 ```
 
 ### 5. Aktualisieren einer Reklamation
-Beschreibung: Endpunkt zum Aktualisieren einer Reklamation anhand der ID.
+Beschreibung: Endpunkt zum Aktualisieren einer Reklamation anhand ihrer ID.
 Method: **PUT**  
 URL: **/api/Auth/login/{id}**  
+Berechtigung: **Nur Admin**
 Die ID ist Teil der URL.
 Body Request: 
 ```json
@@ -347,24 +351,18 @@ Body Request:
 }
 ```
 
-
-
 [Schema zu complaint_dto](#complaint_dto)
 **Hinweis:** Nach aktueller Implementierung sind alle Felder beim PUT required, auch wenn deren Werte sich nicht ändern.
 
 Body Response: 204 No Content
 
-
-
-
-
 [Schema zu complaint_response](#complaint_response)
 
 Beispiel Request:
 ```curl
-curl -X 'POST' \
-  'https://localhost:7069/api/Complaints' \
-  -H 'accept: text/plain' \
+curl -X 'PUT' \
+  'https://localhost:7069/api/Complaints/1' \
+  -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
   "productId": 101,
@@ -378,20 +376,24 @@ curl -X 'POST' \
 }'
 ```
 
-Beispiel Response Body:
-```json
-{
-  "id": 1,
-  "productId": 101,
-  "customer": {
-    "email": "john.doe@example.com",
-    "name": "John Doe"
-  },
-  "date": "2023-05-28",
-  "description": "Das Produkt funktioniert nicht wie erwartet.",
-  "status": "Open"
-}
+### 6. Löschen einer Reklamation
+Beschreibung: Endpunkt zum Abbruch einer Reklamation anhand ihrer ID. Hierbei wird der Status wird dabei auf "Canceled" geändert.
+Method: **DELETE**  
+URL: **/api/Auth/login/{id}**  
+Berechtigung: **Nur Admin**
+Die ID ist Teil der URL.
+Es ist kein body notwendig.
+
+Body Response: 204 No Content
+
+Beispiel Request:
+```curl
+curl -X 'DELETE' \
+  'https://localhost:7069/api/Complaints/1' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzE3MzAzMzQxLCJleHAiOjE3MTc5MDgxNDEsImlhdCI6MTcxNzMwMzM0MSwiaXNzIjoiUmVrbGFtYXRpb25BUElJc3N1ZXIiLCJhdWQiOiJSZWtsYW1hdGlvbkFQSUF1ZGllbmNlIn0.0b3djRHCxgz1PSkFef0pR8vFfGyVxe73OZyXjgwHdYk'
 ```
+
 
 
 
