@@ -2,7 +2,7 @@
 RESTful API zur Verwaltung von Produktreklamationen mit Unit-Tests und End-to-End-Tests.
 
 ## Inhaltsverzeichnis
-1. [Projektstruktur](#projektstruktur)
+1. [Projektstruktur](#project_structure)
 2. [Installation](#installation)
 3. [Frameworks / Features / Designentscheidungen](#frameworks)
     - [API mit ASP.NET Core](#api)
