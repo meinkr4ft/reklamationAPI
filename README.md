@@ -14,14 +14,14 @@ RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tes
     - [Unit Tests mit MSTest, EF InMemory und Moq](#tests)
     - [End-to-End Test mit Python Skript](#e2e)
 4. [API Dokumentation](#api-dokumentation)
-     1. [Login](#login)
-     2. [Alle Reklamationen anzeigen](#getall)
-     3. [Eine Reklamation anzeigen](#get)
-     4. [Reklamatione erstellen](#post)
-     5. [Reklamation aktualisieren](#put)
-     6. [Reklamation abbrechen](#delete)
-     7. [Reklamationen suchen](#search)
-     8. [Reklamationen filtern](#filter)
+     - [Login](#login)
+     - [Alle Reklamationen anzeigen](#getall)
+     - [Eine Reklamation anzeigen](#get)
+     - [Reklamationen erstellen](#post)
+     - [Reklamationen aktualisieren](#put)
+     - [Reklamationen abbrechen](#delete)
+     - [Reklamationen suchen](#search)
+     - [Reklamationen filtern](#filter)
 6. [Testfälle](#testfaelle)
 7. [Verbesserungsmöglichkeiten](#verbesserungsmoeglichkeiten)
 
@@ -259,7 +259,7 @@ Beispiel Response Body:
 ]
 ```
 
-### 3. Einzelne Reklamation anzeigen <a name="get"></a>
+### 3. Eine Reklamation anzeigen <a name="get"></a>
 Beschreibung: Endpunkt zur Anzeige einer einzelnen Reklamation anhand ihrer id.\
 Method: **GET**\
 URL: **/api/Complaints/{id}**\
@@ -302,7 +302,7 @@ Beispiel Response Body:
 ]
 ```
 
-### 4. Erstellen einer Reklamation <a name="post"></a>
+### 4. Reklamationen erstellen <a name="post"></a>
 Beschreibung: Endpunkt zum Erstellen einer Reklamation, der nach der Erstellung die Reklamation (inkl. id) zurückgibt.\
 Method: **POST**\
 URL: **/api/Auth/login**\
@@ -358,7 +358,7 @@ Beispiel Response Body:
 }
 ```
 
-### 5. Aktualisieren einer Reklamation <a name="put"></a>
+### 5. Reklamationen aktualisieren <a name="put"></a>
 Beschreibung: Endpunkt zum Aktualisieren einer Reklamation anhand ihrer ID.\
 Method: **PUT**\
 URL: **/api/Auth/login/{id}**\
@@ -396,8 +396,8 @@ curl -X 'PUT' \
 }'
 ```
 
-### 6. Löschen einer Reklamation <a name="delete"></a>
-Beschreibung: Endpunkt zum Abbruch einer Reklamation anhand ihrer ID. Hierbei wird der Status wird dabei auf "Canceled" geändert.\
+### 6. Reklamationen abbrechen <a name="delete"></a>
+Beschreibung: Endpunkt zum Abbrechen einer Reklamation anhand ihrer ID. Hierbei wird der Status wird dabei auf "Canceled" geändert.\
 Method: **DELETE**\
 URL: **/api/Auth/login/{id}**\
 Berechtigung: **Nur Admin**\
@@ -414,7 +414,7 @@ curl -X 'DELETE' \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwibmJmIjoxNzE3MzAzMzQxLCJleHAiOjE3MTc5MDgxNDEsImlhdCI6MTcxNzMwMzM0MSwiaXNzIjoiUmVrbGFtYXRpb25BUElJc3N1ZXIiLCJhdWQiOiJSZWtsYW1hdGlvbkFQSUF1ZGllbmNlIn0.0b3djRHCxgz1PSkFef0pR8vFfGyVxe73OZyXjgwHdYk'
 ```
 
-### 7. Suchen von Reklamationen <a name="search"></a>
+### 7. Reklamationen suchen <a name="search"></a>
 Beschreibung: Endpunkt zur Suche von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **mindestens ein Kriterium** erfüllen.
 Method: **GET**\
 URL: **/api/Complaints/search**\
@@ -506,7 +506,7 @@ Beispiel Response Body:
 }
 ```
 
-### 8. Filtern von Reklamationen <a name="filter"></a>
+### 8. Reklamationen filtern <a name="filter"></a>
 Beschreibung: Endpunkt zum Filtern von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **alle Kriterien** erfüllen.
 Method: **GET**\
 URL: **/api/Complaints/filter**\
