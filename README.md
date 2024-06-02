@@ -1,6 +1,18 @@
 # reklamationAPI
 RESTful API zur Verwaltung von Produktreklamationen mit Unit- und End-to-End-Tests.
 
+## Projektstruktur
+# ReklamationAPI
+-> Hauptprojekt, das die RESTful API enthält
+
+# ReklamationAPI.Tests
+-> Testprojekt mit Unit-Tests für die API
+
+# Python E2E Test
+-> Python Skript als E2E-Blackbox-Test
+
+## Installation
+
 ### Voraussetzungen
 C# Web API (Haupt- und Testprojekt)
 - .NET 8.0 Runtime
@@ -26,25 +38,10 @@ git clone https://github.com/meinkr4ft/reklamationAPI.git
 ```
 
 ### Build
-C# mit Visual Studio 2022 oder von der command line:
-```console
-msbuild ReklamationAPI.sln /p:Configuration=Release
-```
+ReklamationAPI und Testprojekt jeweils mit Visual Studio 2022.
 
 ### Start
-C# Hauptprojekt:
-Entweder in Visual Studio 2022 oder von der command line:
-```console
-cd ReklamationAPI\bin\Release\net8.0
-dotnet ReklamationAPI.dll
-```
-
-C# Testprojekt:
-Entweder in Visual Studio 2022 oder von der command line:
-```console
-cd ReklamationAPI.Tests\bin\Release\net8.0
-dotnet ReklamationAPI.Tests.dll
-```
+Ausführen der API oder des Testprojekts in Visual Studio "Release" oder "Debug.
 
 ### Python E2E Test
 Nach Start der API von der command line:
