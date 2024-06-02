@@ -8,11 +8,8 @@ C# Web API (Haupt- und Testprojekt)
 Python (End-to-End-Test)
 - Python >= 3.8
 - Modules
-- 
-=> requests
-
-=> urllib3
-
+  - requests
+  - urllib3
 ```console
 pip install requests
 pip install urllib3
