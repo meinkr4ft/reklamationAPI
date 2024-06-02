@@ -306,7 +306,7 @@ Beispiel Response Body:
 ### 4. Reklamationen erstellen <a name="post"></a>
 Beschreibung: Endpunkt zum Erstellen einer Reklamation, der nach der Erstellung die Reklamation (inkl. id) zurückgibt.\
 Method: **POST**\
-URL: **/api/Auth/login**\
+URL: **/api/Complaints**\
 Berechtigung: **Nur Admin**\
 Body Request:
 ```json
@@ -362,7 +362,7 @@ Beispiel Response Body:
 ### 5. Reklamationen aktualisieren <a name="put"></a>
 Beschreibung: Endpunkt zum Aktualisieren einer Reklamation anhand ihrer ID.\
 Method: **PUT**\
-URL: **/api/Auth/login/{id}**\
+URL: **/api/Complaint/{id}**\
 Berechtigung: **Nur Admin**\
 Die ID ist Teil der URL.\
 Body Request: 
@@ -372,7 +372,7 @@ Body Request:
 }
 ```
 
-[Schema zu complaint_dto](#complaint_dto)
+[Schema zu complaint_dto](#complaint_dto)\
 **Hinweis:** Nach aktueller Implementierung sind alle Felder beim PUT required, auch wenn deren Werte sich nicht ändern.
 
 Body Response: 204 No Content
@@ -400,10 +400,10 @@ curl -X 'PUT' \
 ### 6. Reklamationen abbrechen <a name="delete"></a>
 Beschreibung: Endpunkt zum Abbrechen einer Reklamation anhand ihrer ID. Hierbei wird der Status wird dabei auf "Canceled" geändert.\
 Method: **DELETE**\
-URL: **/api/Auth/login/{id}**\
+URL: **/api/Complaint/{id}**\
 Berechtigung: **Nur Admin**\
 Die ID ist Teil der URL.\
-Es ist kein body notwendig.\
+Es ist kein body notwendig.
 
 Body Response: 204 No Content
 
@@ -416,7 +416,7 @@ curl -X 'DELETE' \
 ```
 
 ### 7. Reklamationen suchen <a name="search"></a>
-Beschreibung: Endpunkt zur Suche von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **mindestens ein Kriterium** erfüllen.
+Beschreibung: Endpunkt zur Suche von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **mindestens ein Kriterium** erfüllen.\
 Method: **GET**\
 URL: **/api/Complaints/search**\
 Berechtigung: Jeder\
@@ -508,7 +508,7 @@ Beispiel Response Body:
 ```
 
 ### 8. Reklamationen filtern <a name="filter"></a>
-Beschreibung: Endpunkt zum Filtern von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **alle Kriterien** erfüllen.
+Beschreibung: Endpunkt zum Filtern von Reklamationen. Werden mehrere Parameter angegeben, so sind in der Antwort alle Reklamationen erhalten, die **alle Kriterien** erfüllen.\
 Method: **GET**\
 URL: **/api/Complaints/filter**\
 Berechtigung: Jeder\
@@ -650,7 +650,7 @@ Neben automatisierten Unit oder E2E Tests, lassen sich auf Testfälle definieren
 Exemplarisch werden ein paar mögliche Testfälle beschrieben.
 
 ### 1. Reklamationen anzeigen
-Vorbedingung\
+Vorbedingung:\
 Testschritte:\
 
 ### 2. Reklamation erstellen
