@@ -648,23 +648,20 @@ Beispiel Response Body:
 Neben automatisierten Unit oder E2E Tests, lassen sich auf Testfälle definieren, die beispielsweise über das Swagger UI durchgeführt werden können.\
 Exemplarisch werden ein paar mögliche Testfälle beschrieben.
 
-###1. Anzeigen von Reklamationen
+###1. Reklamationen anzeigen
 Vorbedingung\
 Testschritte:\
 
-###2. Erstellen einer Reklamation
+### 2. Reklamation erstellen
 
 
-###3. Aktualisieren einer Reklamation
+### 3. Reklamation aktualisieren
 
 
-###4. Löschen einer Reklamation
+### 4. Reklamation löschen
 
 
-###5. Suche von Reklamationen
-
-
-###6. Filtern von Reklamationen
+### 5. Reklamationen suchen
 
 ## Verbesserungsmöglichkeiten <a name="verbesserungsmoeglichkeiten"></a>
 - Überlegung, ob die Properties beim PUT optional sein sollten oder nicht.
