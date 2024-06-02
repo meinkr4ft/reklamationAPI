@@ -624,18 +624,39 @@ Beispiel Response Body:
 ```
 
 
-## Testbeschreibung
+## Testfälle
+Neben automatisierten Unit oder E2E Tests, lassen sich auf Testfälle definieren, die beispielsweise über das Swagger UI durchgeführt werden können.\
+Exemplarisch werden ein paar mögliche Testfälle beschrieben.
 
-## Luft nach oben
+###1. Anzeigen von Reklamationen
+Vorbedingung\
+Testschritte:\
+
+###2. Erstellen einer Reklamation
 
 
-##
+###3. Aktualisieren einer Reklamation
+
+
+###4. Löschen einer Reklamation
+
+
+###5. Suche von Reklamationen
+
+
+###6. Filtern von Reklamationen
+
+## Verbesserungsmöglichkeiten
+- Überlegung, ob die Properties beim PUT optional sein sollten oder nicht.
+- Suche verfeinern, indem numerische Parameter auch eine Range darstellen können
+- Eigene Datenbank für den Test Einrichten
+- Parametrisierung der Konfiguration (z.B. Port)
+- Refactoring des Codes, Umstrukturierung, Best Practices etc.
+
+
+
 Fix Creates a new complaint.
 The created complaint will have the status "Open".
-
 Swagger 200 OK remove
-Put Felder optional
-
-search parameter als range
 auth header im request
 404 example value bei filter und search löschen
