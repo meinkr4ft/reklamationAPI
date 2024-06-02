@@ -744,8 +744,8 @@ Vorbedingung: Mindestens ein Eintrag in der Complaints Tabelle in der Datenbank\
 - Refactoring des Codes, Umstrukturierung, Best Practices etc.
 - Testfälle, bei denen DB Fehler auftreten (Datenbank ist locked, keine Verbindung)
 - 2 kleinere Probleme mit Swagger, zu denen ich noch keine Lösung gefunden habe.
-1. Bei Responses wird immer der Code 200 angezeigt, auch wenn ich explizit nur andere Codes angebe
-https://github.com/swagger-api/swagger-core/issues/4044
-2. Die Parameter Beispiele lassen sich nicht als Placeholder definieren, sodass sie bei der Eingabe verschwinden.\
-So muss man bei der Suche erst alle Parameter löschen, die man nicht braucht.
-https://github.com/swagger-api/swagger-ui/issues/3920
+    1. Bei Responses wird immer der Code 200 angezeigt, auch wenn ich explizit nur andere Codes angebe
+    https://github.com/swagger-api/swagger-core/issues/4044
+    2. Die Parameter Beispiele lassen sich nicht als Placeholder definieren, sodass sie bei der Eingabe verschwinden.\
+    So muss man bei der Suche erst alle Parameter löschen, die man nicht braucht.
+    https://github.com/swagger-api/swagger-ui/issues/3920
