@@ -490,8 +490,7 @@ Beispiel Response Body:
 
 ### Schema zu Complaint response <a name="complaint_response"></a>
 ```json
-[
-  {
+{
     "id": "{id}",
     "productId": "{product_id}",
     "customer": {
@@ -501,14 +500,12 @@ Beispiel Response Body:
     "date": "{date: YY-MM-DD}",
     "description": "{description}",
     "status": "{status: 'Open', 'InProgress', 'Accepted', 'Rejected' oder 'Canceled'}"
-  }
-]
+}
 ```
 
 ### Schema zu Complaint dto. <a name="complaint_dto"></a>
 ```json
-[
-  {
+{
     "productId": "{product_id}",
     "customer": {
       "email": "{email}",
@@ -517,13 +514,11 @@ Beispiel Response Body:
     "date": "{date: YY-MM-DD}",
     "description": "{description}",
     "status": "{status: 'Open', 'InProgress', 'Accepted', 'Rejected' oder 'Canceled'}"
-  }
-]
+}
 ```
 
 ### Schema zu Search/Filter dto. <a name="complaint_dto"></a>
 ```json
-[
 {
     "operation": "{operation: 'search' oder 'filter'}",
     "productId": "{product_id}",
@@ -533,8 +528,7 @@ Beispiel Response Body:
     "description": "{description}",
     "status": "{status: 'Open', 'InProgress', 'Accepted', 'Rejected' oder 'Canceled'}"
     "ignoreCase": "{ignore_case: true oder false}"
-  },
-]
+}
 ```
 
 
