@@ -679,8 +679,8 @@ Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden.
 -> 200 OK. Es wird ein Authentifizierungstoken zurückgesendet.
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/a689bd83-cf29-412f-bd1f-3638fbac85ae)
 
-2. Eingabe des Tokens in das Swagger Authorize Feld und Klick auf Authorize
--> Das Schloss Icon oben rechts wird geschlossen.
+2. Eingabe des Tokens in das Swagger Authorize-Feld und Klick auf Authorize
+-> Das Schloss-Icon oben rechts wird geschlossen.
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/53ad0111-66e5-48c4-8f81-9bb5b4bded0b)
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/a8290510-940b-43dc-b39b-2d8642d78a19)
 
@@ -698,8 +698,8 @@ Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Rekla
 -> 200 OK. Es wird ein Authentifizierungstoken zurückgesendet.
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/a689bd83-cf29-412f-bd1f-3638fbac85ae)
 
-2. Eingabe des Tokens in das Swagger Authorize Feld und Klick auf Authorize
--> Das Schloss Icon oben rechts wird geschlossen.
+2. Eingabe des Tokens in das Swagger Authorize-Feld und Klick auf Authorize
+-> Das Schloss-Icon oben rechts wird geschlossen.
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/53ad0111-66e5-48c4-8f81-9bb5b4bded0b)
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/a8290510-940b-43dc-b39b-2d8642d78a19)
 
@@ -716,8 +716,8 @@ Vorbedingung: Logindaten mit Rolle "admin" sind vorhanden. Mindestens eine Rekla
 -> 200 OK. Es wird ein Authentifizierungstoken zurückgesendet.
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/a689bd83-cf29-412f-bd1f-3638fbac85ae)
 
-2. Eingabe des Tokens in das Swagger Authorize Feld und Klick auf Authorize
--> Das Schloss Icon oben rechts wird geschlossen.
+2. Eingabe des Tokens in das Swagger Authorize-Feld und Klick auf Authorize
+-> Das Schloss-Icon oben rechts wird geschlossen.
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/53ad0111-66e5-48c4-8f81-9bb5b4bded0b)
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/a8290510-940b-43dc-b39b-2d8642d78a19)
 
