@@ -183,7 +183,7 @@ Beispiel Response Body:
 }
 ```
 ### 2. Alle Reklamationen anzeigen
-Beschreibung: Endpunkt zum Authentifizieren mit Logindaten, um ein Authentication Token zu erhalten.
+Beschreibung: Endpunkt zur Anzeige aller Reklamationen.
 Method: **GET**  
 URL: **/api/Complaints**  
 Keine URL Parameter oder Body notwendig
@@ -192,11 +192,27 @@ Body Response (200 OK):
 ```json
 [
   {
-    {[complaint1](#project_structure)},
+    {complaint1},
     {complaint2},
     ...
   }
   
+]
+```
+
+Schema zu complaint:
+```json
+[
+    "id": {id},
+    "productId": {product_id},
+    "customer": {
+      "email": "{email}",
+      "name": "{name}"
+    },
+    "date": "{date: YY-MM-DD}",
+    "description": "{description}",
+    "status": "{status: "Open", "InProgress", "Accepted", "Rejected" oder "Canceled"}"
+  }
 ]
 ```
 
