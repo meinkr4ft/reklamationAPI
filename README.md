@@ -91,44 +91,44 @@ Complaint Table:
 - Status
 
 OutboxMessages Table:
-Id (Primärschlüssel, automatisch generiert)
-Body
-Date
-Processed ( = Bool: Nachricht wurde schon verarbeitet?)
-Subject
-To
+- Id (Primärschlüssel, automatisch generiert)
+- Body
+- Date
+- Processed ( = Bool: Nachricht wurde schon verarbeitet?)
+- Subject
+- To
 
 Zusätzlich noch Tables, die durch das Framework zur Authentifizierung erstellt wurden.
 
 ### Authentifizierung und Authorisierung mit JSON Web Token Bearer und UserIdentity
-Mit dem JSON Web Token ließ sich clientseitig eine simple Authentifizierung umsetzen. Nach dem Login muss das generierte Token im Header nachfolgender Requests angegeben werden.
-Es gibt die Rollen "Admin" und "User", wobei nur die Admin-Rolle für schreibende Requests berechtigt ist.
-Die Benutzerverwaltung in der Datenbank ist mit dem Entity Framework Identity Kontext umgesetzt, da diese auch direkt out of the box nutzbar ist und den Anforderungen genügt.
-Logindaten Admin: admin Admin!123
-Logindaten User:  user  User!123
+Mit dem JSON Web Token ließ sich clientseitig eine simple Authentifizierung umsetzen. Nach dem Login muss das generierte Token im Header nachfolgender Requests angegeben werden.\
+Es gibt die Rollen "Admin" und "User", wobei nur die Admin-Rolle für schreibende Requests berechtigt ist.\
+Die Benutzerverwaltung in der Datenbank ist mit dem Entity Framework Identity Kontext umgesetzt, da diese auch direkt out of the box nutzbar ist und den Anforderungen genügt.\
+Logindaten Admin: admin Admin!123\
+Logindaten User:  user  User!123\
 
 ### Benachrichtigungen mit Outbox-Tabelle und dediziertem Service
-Bei gewissen verändernden Zugriffen auf die API sollen die betroffenen Nutzer benachrichtigt werden, was durch einen Eintrag in die Outbox-Tabelle und einen entsprechenden verarbeitenden Service umgesetzt wird.
-Konzeptuell sind die Benachrichtigungen als Email gedacht, jedoch werden diese aufgrund fehlender Anbindung an ein SMTP-Server lediglich als Textdatei im Verzeichnis ReklamationAPI/emails prototypisch abgelegt.
+Bei gewissen verändernden Zugriffen auf die API sollen die betroffenen Nutzer benachrichtigt werden, was durch einen Eintrag in die Outbox-Tabelle und einen entsprechenden verarbeitenden Service umgesetzt wird.\
+Konzeptuell sind die Benachrichtigungen als Email gedacht, jedoch werden diese aufgrund fehlender Anbindung an ein SMTP-Server lediglich als Textdatei im Verzeichnis ReklamationAPI/emails prototypisch abgelegt.\
 
 ### Integrierte Swagger zur Dokumentation der API mit Swashbuckle
-Für die OpenAPI Dokumentation wird ein Swagger UI generiert, dass Informationen zu den Endpunkten bereitstellt.
-Zusätzlich wird mit der Swashbuckle Bibliothek noch Zusatzinformationen bereitgestellt (über Annotationen, XML Kommentare und Example Klassen:
+Für die OpenAPI Dokumentation wird ein Swagger UI generiert, dass Informationen zu den Endpunkten bereitstellt.\
+Zusätzlich wird mit der Swashbuckle Bibliothek noch Zusatzinformationen bereitgestellt (über Annotationen, XML Kommentare und Example Klassen:\
 - Beschreibung der einzelnen API Aufrufe.
 - Beispiel Request Bodies / Schema
 - Beispiel Response / Schema
 - Beschreibung der Request Parameter und Standardwerte
 
 ### Unit Tests mit MSTest, EF InMemory und Moq
-Unit Tests wurden mit dem Microsoft Standard Framework MSTest implementiert.
-Als Testdatenbank wird eine Entity Framework InMemory-Datenbank verwendet, die vor dem Test Beispieldaten erhält.
-Abhängigkeiten zu Services (Authentification, Usermanager) wurden mit Mock Implementierung der enstprechenden Interfaces und den Controllern bereitgestellt.
-Dafür habe ich das Moq Framework genutzt, da das wohl das gängigste Tool ist.
-Aktuell sind 36 Unit Tests implementiert, die hauptsächlich die möglichen Szenarien bei Controller Aufrufen simulieren.
+Unit Tests wurden mit dem Microsoft Standard Framework MSTest implementiert.\
+Als Testdatenbank wird eine Entity Framework InMemory-Datenbank verwendet, die vor dem Test Beispieldaten erhält.\
+Abhängigkeiten zu Services (Authentification, Usermanager) wurden mit Mock Implementierung der enstprechenden Interfaces und den Controllern bereitgestellt.\
+Dafür habe ich das Moq Framework genutzt, da das wohl das gängigste Tool ist.\
+Aktuell sind 36 Unit Tests implementiert, die hauptsächlich die möglichen Szenarien bei Controller Aufrufen simulieren.\
 
 ### End-to-End Test mit Python Skript
-Für einen E2E Test wollte ich einen Blackbox-Test umsetzen, der aus Sicht eines Anwenders geschehen soll.
-Da Python ohne großen Overhead sich dafür nutzen lässt, habe ich eine Reihe von aufeinanderefolgenden API Calls implementiert, die mit den entsprechenden GETs überprüft, ob die Daten richtig angelegt, aktualisiert und zurückgegeben werden.
+Für einen E2E Test wollte ich einen Blackbox-Test umsetzen, der aus Sicht eines Anwenders geschehen soll.\
+Da Python ohne großen Overhead sich dafür nutzen lässt, habe ich eine Reihe von aufeinanderefolgenden API Calls implementiert, die mit den entsprechenden GETs überprüft, ob die Daten richtig angelegt, aktualisiert und zurückgegeben werden.\
 
 ## API Dokumentation
 Die Basisurl lautet:
@@ -142,14 +142,14 @@ Das beim Login erhaltene Token, kann unter Authorize eingegeben werden, um es be
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/5ae6d696-cd78-4478-b1a4-a905f409b8b2)
 ![image](https://github.com/meinkr4ft/reklamationAPI/assets/32766044/257253a0-24ae-47f4-b93e-404ffc46a591)
 
-Im folgenden werden nur Anfragen beschrieben, die dem normalen Programmfluss entsprechen.
-Fehlerhafte oder unberechtigte Anfragen und Responses sind der Swagger Dokumentation zu entnehmen.
+Im folgenden werden nur Anfragen beschrieben, die dem normalen Programmfluss entsprechen.\
+Fehlerhafte oder unberechtigte Anfragen und Responses sind der Swagger Dokumentation zu entnehmen.\
 
 ### 1. Login
-Beschreibung: Endpunkt zum Authentifizieren mit Logindaten, um ein Authentication Token zu erhalten.
-Method: **POST**  
-URL: **/api/Auth/login**  
-Body Request: 
+Beschreibung: Endpunkt zum Authentifizieren mit Logindaten, um ein Authentication Token zu erhalten.\
+Method: **POST**\
+URL: **/api/Auth/login**\
+Body Request:\
 ```json
 {
   "username": "{username}",
@@ -184,11 +184,11 @@ Beispiel Response Body:
 ```
 
 ### 2. Alle Reklamationen anzeigen
-Beschreibung: Endpunkt zur Anzeige aller Reklamationen.
-Method: **GET**  
-URL: **/api/Complaints**  
-Berechtigung: Jeder
-Keine URL Parameter oder Body notwendig.
+Beschreibung: Endpunkt zur Anzeige aller Reklamationen.\
+Method: **GET**\
+URL: **/api/Complaints**\
+Berechtigung: Jeder\
+Keine URL Parameter oder Body notwendig.\
 
 Body Response (200 OK):
 ```json
@@ -240,12 +240,12 @@ Beispiel Response Body:
 ```
 
 ### 3. Einzelne Reklamation anzeigen
-Beschreibung: Endpunkt zur Anzeige einer einzelnen Reklamation anhand ihrer id.
-Method: **GET**  
-URL: **/api/Complaints/{id}**  
-Berechtigung: Jeder
-Die ID ist Teil der URL.
-Es gibt keinen Body im Request.
+Beschreibung: Endpunkt zur Anzeige einer einzelnen Reklamation anhand ihrer id.\
+Method: **GET**\
+URL: **/api/Complaints/{id}**\
+Berechtigung: Jeder\
+Die ID ist Teil der URL.\
+Es gibt keinen Body im Request.\
 
 Body Response (200 OK):
 ```json
@@ -282,12 +282,12 @@ Beispiel Response Body:
 ]
 ```
 
-### 4. Erstellen einer Reklamation
-Beschreibung: Endpunkt zum Erstellen einer Reklamation, der nach der Erstellung die Reklamation (inkl. id) zurückgibt.
-Method: **POST**  
-URL: **/api/Auth/login**  
-Berechtigung: **Nur Admin**
-Body Request: 
+### 4. Erstellen einer Reklamation\
+Beschreibung: Endpunkt zum Erstellen einer Reklamation, der nach der Erstellung die Reklamation (inkl. id) zurückgibt.\
+Method: **POST**\
+URL: **/api/Auth/login**\
+Berechtigung: **Nur Admin**\
+Body Request:
 ```json
 {
   "{complaint_dto}"
@@ -338,12 +338,12 @@ Beispiel Response Body:
 }
 ```
 
-### 5. Aktualisieren einer Reklamation
-Beschreibung: Endpunkt zum Aktualisieren einer Reklamation anhand ihrer ID.
-Method: **PUT**  
-URL: **/api/Auth/login/{id}**  
-Berechtigung: **Nur Admin**
-Die ID ist Teil der URL.
+### 5. Aktualisieren einer Reklamation\
+Beschreibung: Endpunkt zum Aktualisieren einer Reklamation anhand ihrer ID.\
+Method: **PUT**\
+URL: **/api/Auth/login/{id}**\
+Berechtigung: **Nur Admin**\
+Die ID ist Teil der URL.\
 Body Request: 
 ```json
 {
@@ -377,12 +377,12 @@ curl -X 'PUT' \
 ```
 
 ### 6. Löschen einer Reklamation
-Beschreibung: Endpunkt zum Abbruch einer Reklamation anhand ihrer ID. Hierbei wird der Status wird dabei auf "Canceled" geändert.
-Method: **DELETE**  
-URL: **/api/Auth/login/{id}**  
-Berechtigung: **Nur Admin**
-Die ID ist Teil der URL.
-Es ist kein body notwendig.
+Beschreibung: Endpunkt zum Abbruch einer Reklamation anhand ihrer ID. Hierbei wird der Status wird dabei auf "Canceled" geändert.\
+Method: **DELETE**\
+URL: **/api/Auth/login/{id}**\
+Berechtigung: **Nur Admin**\
+Die ID ist Teil der URL.\
+Es ist kein body notwendig.\
 
 Body Response: 204 No Content
 
