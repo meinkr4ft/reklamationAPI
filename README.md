@@ -170,7 +170,7 @@ Fehlerhafte oder unberechtigte Anfragen und Responses sind der Swagger Dokumenta
 Beschreibung: Endpunkt zum Authentifizieren mit Logindaten, um ein Authentication Token zu erhalten.\
 Method: **POST**\
 URL: **/api/Auth/login**\
-Body Request:\
+Body Request:
 ```json
 {
   "username": "{username}",
