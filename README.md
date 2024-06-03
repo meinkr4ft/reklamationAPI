@@ -161,7 +161,7 @@ Da Python ohne großen Overhead sich dafür nutzen lässt, habe ich eine Reihe v
 
 
 ## API Dokumentation <a name="api-dokumentation"></a>
-Die Basisurl lautet:
+Die Basis-URL lautet:
 https://localhost:7069/
 
 ### Swagger Dokumentation unter: <a name="swagger-dokumentation"></a>
